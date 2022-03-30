@@ -1,0 +1,21 @@
+version: "3.8"
+services:
+  backend-app:
+    build: ./src
+    image: backend
+    ports:
+      - 3000:3000
+    volumes:
+      - ./src:/src
+    env_file: .env
+    # depends_on: 
+    #     - postgre_db
+    # postgre_db:
+    #   build: ./postgres-db
+    #   image: postgre_db
+    #   container_name: postgre_db
+    #   ports:
+    #     - "5432:5432"
+    #   environment: 
+    #     POSTGRES_DB: postgredb
+    #     POSTGRES_PASSWORD: abc123
