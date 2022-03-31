@@ -3,7 +3,7 @@ const awilix = require('awilix')
 const container = awilix.createContainer()
 
 container.register({
-    app:            awilix.asFunction(require('./app/index'))
+    app:            awilix.asFunction(require('./api/index'))
 })
 
 const app = container.resolve('app')

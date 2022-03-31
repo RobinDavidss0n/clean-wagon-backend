@@ -1,12 +1,12 @@
 version: "3.8"
 services:
   backend-app:
-    build: ./src
+    build: ./app
     image: backend
     ports:
       - 3000:3000
     volumes:
-      - ./src:/src
+      - ./app/src:/app/src
     env_file: .env
     # depends_on: 
     #     - postgre_db
