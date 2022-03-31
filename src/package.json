@@ -2,9 +2,9 @@
   "name": "clean-wagon-backend",
   "version": "1.0.0",
   "description": "backend code for clean wagon backend",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
-    "start": "nodemon -L src/index.js"
+    "start": "nodemon -L main.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,7 @@
   "dependencies": {
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "awilix": "^7.0.1"
   }
 }

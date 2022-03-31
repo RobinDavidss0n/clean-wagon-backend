@@ -1,10 +1,13 @@
 const express = require('express');
-const app = express()
 
-const PORT = 3000;
+module.exports = function() {
 
-app.listen(PORT)
+    const app = express()
+    
+    
+    app.get('/', function (req, res) {
+        res.send('Hello World')
+    })
 
-app.get('/', function (req, res) {
-    res.send('Hello World')
-})
+    return app
+}
