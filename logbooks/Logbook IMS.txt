@@ -1,0 +1,13 @@
+﻿28 mars:
+Was on the intro lecture and had a small meeting with my project group. We made a discord server, decided which roles everyone should have and decided what part of the project people would be working on as their main focus.
+Time: 2,5h
+
+
+30 mars:
+First real meeting with the group, had a sprint planning meeting. We then started to work on our task, as my main focus area is the backend. I helped make the docker container with a node.js environment and make a general file structure. We then started to discuss how the backend structure would be, which we decided to be a modified 3-layers architecture. We discussed with the mover team how we would communicate with them and decided for a socket server and socket client. With the mobile team we would use an API and also had an idea to modify a API request to use it as a listener, sending a get request but instead of answering just save it and answer when the server needs to communicate with the mobile-app, after the server answer the saved request the mobile-app would send a new one that the server saves so it always has a method to talk with the mobile-app.
+Time: 5,5h
+
+
+31 mars:
+The entire team got together but worked on their individual parts. We in the backend struggled with a bug with nodemon that made the application restart in a loop when a change was made. The solution was to move some files that were conflicting with each other. After that we implemented a mySQL database and layed out a basic table layout. Wa also took up the issue with that API is one way only and the backend cannot start a connection with the mobile or mower and the requirements states that we need to use APIs. We are thinking about using an API listener as mentioned before or to mabey use Google's Firebase listener instead but we have not decided. We want to ask Husqvarna about a socket server for the mower instead.
+Time: 4h
