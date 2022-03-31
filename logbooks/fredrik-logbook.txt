@@ -1,0 +1,14 @@
+28 march 2022
+Attended intro lecture. Got together with the project group and agreed on a basic work and meeting schedule as well as everyone’s main role/function within the group. My main role will be to develop the backend system.
+Time: 2,5 hrs
+ 
+30 march 2022
+Group meeting. Set up code repositories, file structures, and project management aids (Trello). Discussed the project requirements to find a common understanding on what needs to be done during the first stage of the project. Drew up an initial, general architecture for the backend application. Also discussed more detailed technical implementations such as how to specifically communicate with the mower and the mobile app respectively. The tentative decision is to use sockets for the mower communication and a combination of REST API with callbacks for the mobile app communication.
+Attended lecture on Project Process.
+Time: 5 hrs
+ 
+31 March 2022
+Continued work on the backend application’s skeleton. Got the basic file structure with dependency injection in place. Created a MySQL database and started creating tables, although this is still work-in-progress depending on how the final technical implementation will be done. During the planning we have discussed how to maintain the connection between the mower and the backend, and the app and the backend respectively. We also decided to clarify from the examinator whether it is OK if the mower maintains a socket connection with the backend beside the REST API communication.
+ 
+Time: 4hrs
+ 
