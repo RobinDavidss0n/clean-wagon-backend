@@ -1,0 +1,20 @@
+
+Tuesday March 28 -
+
+ - Gathered the whole team and introduced ourselves
+ - Decided to use SCRUM as our method of working with the project
+ - We split up into teams and are now working in different teams of 3 for each part of the system (backend, mobile-app and mower)
+ 
+Wednesday March 30 -
+ - Group meeting on what to focus on in the start
+ - Set up our source code in GitHub
+ - Initialised our backend environment, using node.js and structured the folders
+ - Added docker and docker-compose files
+
+Thursday March 31 -
+ - Continued our work on the folder structure and added awilix for dependency injection
+ - Had som struggles with nodemon, but figured it out.
+ - Decided to use MySQL as Database
+ - Set up tables and relations for the system
+ - created overall system architecture in draw.io
+ - created table relations architecture in draw.io
