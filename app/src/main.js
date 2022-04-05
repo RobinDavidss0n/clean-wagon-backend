@@ -26,8 +26,6 @@ container.register({
 
 const app = container.resolve('app')
 
-
-
 app.listen(3000, function () {
     console.log('Web application listening on port 3000.')
 })

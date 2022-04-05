@@ -8,8 +8,9 @@ services:
     volumes:
       - ./app/src:/app/src
     env_file: .env
+    command: sh -c './wait-for db:3306 -t 0 -- npm run start'
     depends_on: 
-        - clnwgn_db
+        - db
   db:
     container_name: clnwgn_db
     build: ./db
