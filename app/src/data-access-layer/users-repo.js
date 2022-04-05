@@ -28,7 +28,7 @@ module.exports = function({QueryManager, ResponseContainer}) {
      * @param {string} email 
      * @returns {Promise<ResponseContainer>}
      */
-    exports.getUserById = async function(email) {
+    exports.getUserByEmail = async function(email) {
         const query = `
         SELECT *
         FROM users

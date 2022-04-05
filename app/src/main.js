@@ -8,6 +8,7 @@ container.register({
 
     /********************************************** CLASSES **********************************************/
     ResponseContainer:  awilix.asFunction(require('./data-access-layer/classes/response-container-class')),
+    User:               awilix.asFunction(require('./data-access-layer/classes/user-class')),
 
     /******************************************** DATA ACCESS ********************************************/
     dbConnection:       awilix.asFunction(require('./data-access-layer/db')),
@@ -15,7 +16,8 @@ container.register({
     usersRepo:          awilix.asFunction(require('./data-access-layer/users-repo')),
 
     /****************************************** BUSINESS LOGIC *******************************************/
-    // Add BLL files here...
+    Constants:          awilix.asFunction(require('./business-logic-layer/constants')),
+    usersManager:       awilix.asFunction(require('./business-logic-layer/users-manager')),
 
     /************************************************ API ************************************************/
     // Add API related files here...
