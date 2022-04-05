@@ -1,4 +1,4 @@
-module.exports = function({QueryManager, ResponseContainer}) {
+module.exports = function({QueryManager}) {
 
     const exports = {}
     const resourceName = 'users'
