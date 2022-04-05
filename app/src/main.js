@@ -3,20 +3,24 @@ const awilix = require('awilix')
 const container = awilix.createContainer()
 
 container.register({
-    /********************************************** TESTS **********************************************/
+    /*********************************************** TESTS ***********************************************/
     // Add test files here...
 
-    /******************************************* DATA ACCESS *******************************************/
-    dbConnection:   awilix.asFunction(require('./data-access-layer/db')),
-    queryManager:   awilix.asFunction(require('./data-access-layer/query-manager')),
+    /********************************************** CLASSES **********************************************/
+    ResponseContainer:  awilix.asFunction(require('./data-access-layer/classes/response-container-class')),
 
-    /***************************************** BUSINESS LOGIC ******************************************/
+    /******************************************** DATA ACCESS ********************************************/
+    dbConnection:       awilix.asFunction(require('./data-access-layer/db')),
+    QueryManager:       awilix.asFunction(require('./data-access-layer/query-manager')),
+    usersRepo:          awilix.asFunction(require('./data-access-layer/users-repo')),
+
+    /****************************************** BUSINESS LOGIC *******************************************/
     // Add BLL files here...
 
-    /*********************************************** API ***********************************************/
+    /************************************************ API ************************************************/
     // Add API related files here...
 
-    /******************************************* APPLICATION *******************************************/
+    /******************************************** APPLICATION ********************************************/
     app:            awilix.asFunction(require('./api/index'))
 })
 
