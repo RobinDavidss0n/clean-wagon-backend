@@ -4,7 +4,7 @@ const container = awilix.createContainer()
 
 container.register({
     /*********************************************** TESTS ***********************************************/
-    // Add test files here...
+    usersTest:          awilix.asFunction(require('./tests/users-tests')),
 
     /********************************************** CLASSES **********************************************/
     ResponseContainer:  awilix.asFunction(require('./data-access-layer/classes/response-container-class')),
