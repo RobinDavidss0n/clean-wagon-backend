@@ -4,7 +4,6 @@ SET NAMES utf8mb4;
 
 /******************** CREATE TABLES *******************/
 
-
 CREATE TABLE Users(
     id INT NOT NULL AUTO_INCREMENT,
     email VARCHAR(32) NOT NULL,

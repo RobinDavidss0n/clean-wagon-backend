@@ -1,19 +1,32 @@
-const express = require('express');
-// const apiRouter = require('./router-api');
+// Toggle testruns:
+const willRunTests = true
+const express = require('express')
 
-module.exports = function ({ statusCodes, apiRouter }) {
 
-
-    console.log(statusCodes.NotExtended);
+module.exports = function ({usersTest, statusCodes, apiRouter}) {
+    console.log(statusCodes.NotExtended)
 
     const app = express()
 
+
+    /****************************** Say hello to visitors *******************************/
     app.get('/', function (req, res) {
         res.status(statusCodes.OK).json({ "Hello": "World" }).end();
     })
 
+
+    /********************************* Set up router(s) *********************************/
     app.use('/api', apiRouter)
 
-    return app
 
+    /************************************ Run tests *************************************/
+    if (willRunTests) {
+        console.log('Running tests...\n')
+        usersTest.runAllUsersTests()
+    }
+
+
+    /************************************************************************************/
+
+    return app
 }

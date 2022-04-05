@@ -8,15 +8,16 @@ services:
     volumes:
       - ./app/src:/app/src
     env_file: .env
-    # depends_on: 
-    #     - postgre_db
+    command: sh -c './wait-for db:3306 -t 0 -- npm run start'
+    depends_on: 
+        - db
   db:
-    container_name: mysql_db
+    container_name: clnwgn_db
     build: ./db
     image: mysql
     platform: linux/x86_64
     ports:
-      - 3306:3306
+      - 3309:3306
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: secretPassword
