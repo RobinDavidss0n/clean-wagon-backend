@@ -10,14 +10,14 @@ services:
     env_file: .env
     # depends_on: 
     #     - postgre_db
-    db:
-      container_name: mysql_db
-      build: ./db
-      image: mysql
-      platform: linux/x86_64
-      ports:
-        - 3306:3306
-      restart: always
-      environment:
-        MYSQL_ROOT_PASSWORD: secretPassword
-        MYSQL_DATABASE: CleanWagon
+  db:
+    container_name: mysql_db
+    build: ./db
+    image: mysql
+    platform: linux/x86_64
+    ports:
+      - 3306:3306
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: secretPassword
+      MYSQL_DATABASE: CleanWagon
