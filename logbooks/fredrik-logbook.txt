@@ -11,4 +11,9 @@ Time: 5 hrs
 Continued work on the backend application’s skeleton. Got the basic file structure with dependency injection in place. Created a MySQL database and started creating tables, although this is still work-in-progress depending on how the final technical implementation will be done. During the planning we have discussed how to maintain the connection between the mower and the backend, and the app and the backend respectively. We also decided to clarify from the examinator whether it is OK if the mower maintains a socket connection with the backend beside the REST API communication.
  
 Time: 4hrs
+
+5 April 2022
+Attended sprint planning meeting with the entire team in the morning. Attended the lecture on wireless communication afterwards. The afternoon was spent with more detailed planning between the members in the backend 'squad'. My task(s) for the day was to write backbone code in accordance with the three-layer architecture. I managed to do this for the Data-Access-Layer and the Business-Logic-Layer as well as to write some test code for creating new users to the platform.
+
+Time: 8 hrs
  
