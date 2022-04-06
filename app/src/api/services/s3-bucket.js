@@ -1,5 +1,5 @@
 const path = require('path')
-require('dotenv').config({ path: path.resolve(__dirname, './.env') })
+require('dotenv').config({ path: path.resolve(__dirname, '../../.env') })
 const S3 = require('aws-sdk/clients/s3');
 const fs = require('fs');
 
@@ -28,8 +28,16 @@ function uploadFile (file) {
     return s3.upload(uploadParams).promise();
 }
 
-function downloadFile (id) {
-    // const fileStream = fs.
+function downloadFile (fileId) {
+
+    const downloadParams = {
+        Key: fileId,
+        Bucket: bucketName
+    }
+
+    return s3.getObject(downloadParams).createReadStream()
+    
 }
 
+exports.downloadFile = downloadFile;
 exports.uploadFile = uploadFile;
