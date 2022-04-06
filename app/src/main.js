@@ -16,7 +16,8 @@ container.register({
     usersManager:       awilix.asFunction(require('./business-logic-layer/users-manager')),
 
     /************************************************ API ************************************************/
-    apiRouter: awilix.asFunction(require('./api/router-api')),
+    apiRouter: awilix.asFunction(require('./api/routes/router-api')),
+    imageRouter: awilix.asFunction(require('./api/routes/image-router-api')),
     statusCodes: awilix.asFunction(require('./api/statusCodeHandler')),
 
     /******************************************** APPLICATION ********************************************/

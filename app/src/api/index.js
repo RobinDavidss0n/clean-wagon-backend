@@ -1,13 +1,11 @@
 // Toggle testruns:
 const willRunTests = true
-const express = require('express')
+const express = require('express')    
 
-
-module.exports = function ({usersTest, statusCodes, apiRouter}) {
+module.exports = function ({usersTest, statusCodes, apiRouter, imageRouter}) {
     console.log(statusCodes.NotExtended)
 
     const app = express()
-
 
     /****************************** Say hello to visitors *******************************/
     app.get('/', function (req, res) {
@@ -17,6 +15,7 @@ module.exports = function ({usersTest, statusCodes, apiRouter}) {
 
     /********************************* Set up router(s) *********************************/
     app.use('/api', apiRouter)
+    app.use('/api/v1/images', imageRouter)
 
 
     /************************************ Run tests *************************************/
