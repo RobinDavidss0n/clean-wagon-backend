@@ -27,8 +27,9 @@ CREATE TABLE Mowers(
 CREATE TABLE Journeys(
     id INT NOT NULL AUTO_INCREMENT,
     mower_id INT NOT NULL,
-    start_time TIMESTAMP,
-    end_time TIMESTAMP,
+    start_time TIMESTAMP NOT NULL,
+    end_time TIMESTAMP NULL,
+    PRIMARY KEY (id),
     FOREIGN KEY (mower_id) REFERENCES Mowers(id)
 );
 
@@ -36,7 +37,8 @@ CREATE TABLE Coordinates(
     id INT NOT NULL AUTO_INCREMENT,
     journey_id INT NOT NULL,
     location POINT NOT NULL,
-    time TIMESTAMP,
+    time TIMESTAMP NOT NULL,
+    PRIMARY KEY (id),
     FOREIGN KEY (journey_id) REFERENCES Journeys(id)
 );
 
@@ -46,5 +48,6 @@ CREATE TABLE Events(
     event_type VARCHAR(32),
     filename VARCHAR(32),
     object_desc VARCHAR(32),
+    PRIMARY KEY (id),
     FOREIGN KEY (coordinate_id) REFERENCES Coordinates(id)
 );
