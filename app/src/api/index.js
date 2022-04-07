@@ -1,11 +1,14 @@
 // Toggle testruns:
 const willRunTests = true
 const express = require('express')    
+const bodyParser = require('body-parser')
 
-module.exports = function ({usersTest, statusCodes, apiRouter, imageRouter}) {
+module.exports = function ({usersTest, statusCodes, apiRouter, imageRouter, coordinateRouter, eventRouter, journeyRouter}) {
     console.log(statusCodes.NotExtended)
 
     const app = express()
+
+    app.use(bodyParser.json());
 
     app.use(function (request, response, next) {
         console.log(request.method, request.url);
@@ -25,8 +28,11 @@ module.exports = function ({usersTest, statusCodes, apiRouter, imageRouter}) {
 
 
     /********************************* Set up router(s) *********************************/
-    app.use('/api', apiRouter)
+    app.use('/api/v1/', apiRouter)
     app.use('/api/v1/images', imageRouter)
+    app.use('/api/v1/coordinates', coordinateRouter)
+    app.use('/api/v1/events', eventRouter)
+    app.use('/api/v1/journeys', journeyRouter)
 
 
     /************************************ Run tests *************************************/

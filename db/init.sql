@@ -36,7 +36,8 @@ CREATE TABLE Journeys(
 CREATE TABLE Coordinates(
     id INT NOT NULL AUTO_INCREMENT,
     journey_id INT NOT NULL,
-    location POINT NOT NULL,
+    x INT NOT NULL,
+    y INT NOT NULL,
     time TIMESTAMP NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (journey_id) REFERENCES Journeys(id)

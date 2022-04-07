@@ -39,5 +39,7 @@ function downloadFile (fileId) {
     
 }
 
-exports.downloadFile = downloadFile;
-exports.uploadFile = uploadFile;
+module.exports = {
+    downloadFile,
+    uploadFile
+}
