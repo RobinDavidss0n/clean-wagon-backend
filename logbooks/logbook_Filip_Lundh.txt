@@ -18,3 +18,20 @@ Thursday March 31 -
  - Set up tables and relations for the system
  - created overall system architecture in draw.io
  - created table relations architecture in draw.io
+
+
+Tuesday April 5 -
+ - Added nginx reverse proxy for AWS instance which routes traffic from port 80 to our application at port 3000
+ - Started working on AWS RDS and S3 buckets
+
+Wednesday April 6 -
+ - Set up AWS S3 bucket for uploading images taken by the mower
+ - Configured our node application to connect to our AWS S3 bucket
+ - Created an API endpoint for uploading a file via HTTP request to our S3 bucket
+ - Created an API endpoint for downloading a file via HTTP request from our S3 bucket
+
+ Thursday April 7 -
+  - Set up AWS RDS instance for our production MySQL database
+  - Set up connection to this AWS RDS MySQL with our node application
+  - Changed our env file to be able to select between our production db and test docker db 
+  - Started working on API for mowers to send coordinates
