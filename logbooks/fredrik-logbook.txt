@@ -21,4 +21,9 @@ Time: 8 hrs
 Watched the pre-recorded lecture on Bluetooth and certification. Had a stand-up meeting with the backend squad and decided what to work on during the day. Robin and I worked on finalizing the database structure, so that it is (hopefully) done. We ran into (and solved) an issue where VS Code apparently changes the formatting of line breaks from LF to CRLF, which made a shell script impossible to run when running the app on a Windows machine.
 
 Time: 5 hrs
+
+7 April 2022
+Started working on implementing the functionality for the robot to send an image via an "event". For my part that meant creating a Mower class, writing code to create a standard user and a standard mower when initializing the database. Also started writing repository functions for the mower resource in the db.
+
+Time: 3,5 hrs
  
