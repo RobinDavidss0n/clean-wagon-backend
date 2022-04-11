@@ -1,6 +1,6 @@
 const ResponseContainer = require('../data-access-layer/classes/response-container-class')
 
-module.exports = function ({ constants }) {
+module.exports = function ({ constants, eventRepo }) {
 
     const exports = {}
     const errorCodes = constants.errorCodes
@@ -12,24 +12,12 @@ module.exports = function ({ constants }) {
      */
     exports.createEvent = async function (event) {
 
-        console.log("createEvent", event);
-        // const errors = coordinate.validate()
-
-        return "Create Event"
-
+        return await eventRepo.createEvent(event)
     }
 
     exports.getEvent = async function (eventId) {
-        console.log("getEvent", eventId);
-        return {}
+        return await eventRepo.getEvent(eventId)
     }
-
-    exports.getAllEventsByJourneyId = async function (journeyId) {
-        console.log("getAllEventsByJourneyId", journeyId);
-        return []
-    }
-
-
 
     return exports
 
