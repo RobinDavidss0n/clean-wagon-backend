@@ -1,15 +1,14 @@
-const User = require('../data-access-layer/classes/user-class') 
+const User = require('../data-access-layer/classes/user-class')
 
-module.exports = function({usersManager}) {
+module.exports = function ({ usersManager }) {
 
     const exports = {}
-
 
     /**
      * Runs all tests specified in this file.
      * @returns {boolean}
      */
-    exports.runAllUsersTests = async function() {
+    exports.runAllUsersTests = async function () {
         // TODO: Include the individual testing functions here as they go.
 
         createUserTestSuccess = await exports.createUser()
@@ -26,7 +25,7 @@ module.exports = function({usersManager}) {
      * Tests the createUser function with valid and invalid data.
      * @returns {boolean}
      */
-    exports.createUser = async function() {
+    exports.createUser = async function () {
 
         emailUser = getRandomString(6)
 
@@ -43,7 +42,7 @@ module.exports = function({usersManager}) {
 
         validPassword = 'y0u-cAn-N3veR-gUe55'
         tooShortPassword = 'only5'
-        
+
         // Create new user instances:
         validUser = new User(validEmail, validPassword, validFirstName, validLastName)
         invalidUser1 = new User(invalidEmail, validPassword, tooShortFirstName, validLastName)
@@ -55,10 +54,10 @@ module.exports = function({usersManager}) {
         test2 = await usersManager.createUser(invalidUser1)
         test3 = await usersManager.createUser(invalidUser2)
         test4 = await usersManager.createUser(invalidUser3)
-        
+
         // Evaluate the responses:
         test1Success = (test1.isSuccess && test1.result.affectedRows == 1)
-        test2Success = (!test2.isSuccess && test2.errorCode == 'validationError' 
+        test2Success = (!test2.isSuccess && test2.errorCode == 'validationError'
             && test2.errorStack[0] == 'invalidEmail'
             && test2.errorStack[1] == 'firstNameTooShort')
         test3Success = (!test3.isSuccess && test3.errorCode == 'validationError'
@@ -76,7 +75,7 @@ module.exports = function({usersManager}) {
      * Tests the getUserByEmail function with valid and invalid emails.
      * @returns {boolean}
      */
-    exports.getUserByEmail = async function() {
+    exports.getUserByEmail = async function () {
 
     }
 
@@ -89,7 +88,7 @@ module.exports = function({usersManager}) {
     function getRandomString(length) {
         const charset = 'abcdefghijklmnopqrstuvwxyz'
         randomString = ''
-       
+
         for (let i = 0; i < length; i++) {
             randomString += charset[Math.floor(Math.random() * charset.length)]
         }

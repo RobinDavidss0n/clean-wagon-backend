@@ -25,7 +25,6 @@ module.exports = function({usersRepo, constants}) {
         } else {
             return await usersRepo.createUser(user)
         }
-
     }
 
 

@@ -37,6 +37,9 @@ module.exports = function ({usersTest, statusCodes, apiRouter, imageRouter, coor
 
 
     /************************************ Run tests *************************************/
+    const Journey = require('../data-access-layer/classes/journey-class')
+    nj = new Journey()
+    
     if (willRunTests) {
         console.log('Running tests...\n')
         usersTest.runAllUsersTests()

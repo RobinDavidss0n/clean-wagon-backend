@@ -3,6 +3,10 @@ module.exports = function ({ QueryManager }) {
     const exports = {}
     const resourceName = 'journeys'
 
+    exports.test = function(){
+        console.log("Journey test")
+    }
+
     /**
      * Inserts a new journey into the database.
      * @param {object} journey
@@ -36,6 +40,23 @@ module.exports = function ({ QueryManager }) {
                 journey.start_time,
                 journey.end_time
             ]
+            return await QueryManager.runQuery(query, values, resourceName)
+        }
+
+
+    /**
+     * Gets the journey with the specified mover_id from the database.
+     * @param {string} id 
+     * @returns {Promise<ResponseContainer>}
+     */
+         exports.getJourneyByMowerId = async function(id) {
+            const query = `
+            SELECT *
+            FROM users
+            WHERE email = ?
+            `
+            const values = [id]
+    
             return await QueryManager.runQuery(query, values, resourceName)
         }
 

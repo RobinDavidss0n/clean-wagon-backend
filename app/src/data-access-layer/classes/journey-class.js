@@ -1,15 +1,43 @@
 // const constants = require('../../business-logic-layer/constants')
+const listModules = require('awilix').listModules
 
-module.exports = class Coordinate {
+module.exports = class Journey {
     id
     mower_id
     start_time
     end_time = null
+    constructErrors = null
 
-    constructor(id, mower_id, start_time) {
-        this.id = id
-        this.mower_id = mower_id
-        this.start_time = start_time
+    constructor(id = null, mower_id = null, start_time = null) {
+
+        listModules.journeyRepo.test()
+
+
+        // switch (id) {
+
+        //     //create new Journey
+        //     case null:
+        //         this.id = id
+        //         this.mower_id = mower_id
+        //         this.start_time = start_time
+        //         this.createNewJourney()
+        //         break;
+
+        //     //Get existing Journey
+        //     case !null:
+                
+
+
+        //         break;
+
+        //     default:
+        //         break;
+        // }
+
+    }
+
+    createNewJourney() {
+        
     }
 
     /**

@@ -12,6 +12,7 @@ container.register({
     usersRepo:          awilix.asFunction(require('./data-access-layer/users-repo')),
     coordinateRepo:     awilix.asFunction(require('./data-access-layer/coordinate-repo')), 
     mowersRepo:         awilix.asFunction(require('./data-access-layer/mowers-repo')),
+    journeyRepo:        awilix.asFunction(require('./data-access-layer/journey-repo')),
 
     /****************************************** BUSINESS LOGIC *******************************************/
     constants:          awilix.asFunction(require('./business-logic-layer/constants')),

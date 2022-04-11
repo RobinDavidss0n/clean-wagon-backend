@@ -10,7 +10,7 @@ module.exports = function ({ statusCodes, mowersManager }) {
 
     router.get('by-user-id/:id', (req, res) => {
         const id = req.params.id
-        const response = await mowersManager.getMowersByUserId(id)
+        //const response = await mowersManager.getMowersByUserId(id)
 
         res.status(statusCodes.OK).json(response);
     })
@@ -18,7 +18,7 @@ module.exports = function ({ statusCodes, mowersManager }) {
 
     router.get('by-serial/:serial', (req, res) => {
         const serial = req.params.serial
-        const response = await mowersManager.getMowerBySerial(serial)
+        //const response = await mowersManager.getMowerBySerial(serial)
 
         res.status(statusCodes.OK).json(response);
     })
