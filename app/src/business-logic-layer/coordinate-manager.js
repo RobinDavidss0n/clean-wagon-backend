@@ -19,6 +19,17 @@ module.exports = function ({ coordinateRepo, constants }) {
 
     }
 
+
+    /**
+     * Returns all coordinates that belong to the given journey id.
+     * @param {string} journeyId 
+     * @returns {Promise<ResponseContainer>}
+     */
+    exports.getCoordinatesByJourneyId = async function(journeyId) {
+
+        return await coordinateRepo.getCoordinatesByJourneyId(journeyId)
+    }
+
     return exports
 
 }

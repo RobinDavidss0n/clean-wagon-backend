@@ -27,7 +27,7 @@ module.exports = function ({ QueryManager }) {
      * @param {string} journeyId 
      * @returns {Promise<ResponseContainer>}
      */
-    exports.getCoordinatesByJourneyId = function(journeyId) {
+    exports.getCoordinatesByJourneyId = async function(journeyId) {
         const query = `
             SELECT *
             FROM Coordinates
