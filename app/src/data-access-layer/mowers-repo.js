@@ -20,6 +20,11 @@ module.exports = function({QueryManager}) {
     }
 
 
+    /**
+     * Returns the mower with the supplied serial number.
+     * @param {string} mower_serial 
+     * @returns {Promise<ResponseContainer>}
+     */
     exports.getMowerBySerial = async function(mower_serial) {
         const query = `
         SELECT *
