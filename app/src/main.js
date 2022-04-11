@@ -10,6 +10,7 @@ container.register({
     dbConnection:       awilix.asFunction(require('./data-access-layer/db')),
     QueryManager:       awilix.asFunction(require('./data-access-layer/query-manager')),
     usersRepo:          awilix.asFunction(require('./data-access-layer/users-repo')),
+    mowersRepo:         awilix.asFunction(require('./data-access-layer/mowers-repo')),
 
     /****************************************** BUSINESS LOGIC *******************************************/
     constants:          awilix.asFunction(require('./business-logic-layer/constants')),

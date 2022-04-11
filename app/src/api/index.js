@@ -1,4 +1,4 @@
-// Toggle testruns:
+// Toggle test runs:
 const willRunTests = true
 const express = require('express')    
 

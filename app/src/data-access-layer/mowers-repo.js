@@ -9,14 +9,26 @@ module.exports = function({QueryManager}) {
      * @returns {Promise<ResponseContainer>}
      */
     exports.getMowersByUserId = async function(user_id) {
+        const query = `
+        SELECT * 
+        FROM Mowers
+        WHERE user_id = ?
+        `
+        const values = [user_id]
 
-
+        return await QueryManager.runQuery(query, values, resourceName)
     }
 
 
     exports.getMowerBySerial = async function(mower_serial) {
+        const query = `
+        SELECT *
+        FROM Mowers
+        WHERE mower_serial = ?`
 
+        const values = [mower_serial]
 
+        return await QueryManager.runQuery(query, values, resourceName)
     }
 
 
