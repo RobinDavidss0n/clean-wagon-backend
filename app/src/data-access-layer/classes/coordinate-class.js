@@ -3,7 +3,7 @@
 module.exports = class Coordinate {
     x
     y
-    journey_id
+    journeyid
 
     constructor(x, y, journey_id) {
         this.x = x
