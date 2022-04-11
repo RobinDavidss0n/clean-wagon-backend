@@ -15,14 +15,16 @@ container.register({
     /****************************************** BUSINESS LOGIC *******************************************/
     constants:          awilix.asFunction(require('./business-logic-layer/constants')),
     usersManager:       awilix.asFunction(require('./business-logic-layer/users-manager')),
+    mowersManager:      awilix.asFunction(require('./business-logic-layer/mowers-manager')),
 
     /************************************************ API ************************************************/
-    apiRouter: awilix.asFunction(require('./api/routes/router-api')),
-    imageRouter: awilix.asFunction(require('./api/routes/image-router-api')),
-    statusCodes: awilix.asFunction(require('./api/statusCodeHandler')),
+    mowersRouter:       awilix.asFunction(require('./api/routes/mowers-router-api')),
+    apiRouter:          awilix.asFunction(require('./api/routes/router-api')),
+    imageRouter:        awilix.asFunction(require('./api/routes/image-router-api')),
+    statusCodes:        awilix.asFunction(require('./api/statusCodeHandler')),
 
     /******************************************** APPLICATION ********************************************/
-    app:            awilix.asFunction(require('./api/index'))
+    app:                awilix.asFunction(require('./api/index'))
 })
 
 
