@@ -21,6 +21,23 @@ module.exports = function ({ QueryManager }) {
         return await QueryManager.runQuery(query, values, resourceName)
     }
 
+
+    /**
+     * Returns all coordinates with the given journey id.
+     * @param {string} journeyId 
+     * @returns {Promise<ResponseContainer>}
+     */
+    exports.getCoordinatesByJourneyId = function(journeyId) {
+        const query = `
+            SELECT *
+            FROM Coordinates
+            WHERE journey_id = ?
+        `
+        const values = [journeyId]
+
+        return await QueryManager.runQuery(query, values, resourceName)
+    }
+
     return exports
 
 }
