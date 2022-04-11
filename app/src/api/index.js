@@ -28,7 +28,6 @@ module.exports = function ({usersTest, statusCodes, apiRouter, imageRouter, coor
 
 
     /********************************* Set up router(s) *********************************/
-    app.use('/api/v1/', apiRouter)
     app.use('/api/v1/images', imageRouter)
     app.use('/api/v1/coordinates', coordinateRouter)
     app.use('/api/v1/events', eventRouter)

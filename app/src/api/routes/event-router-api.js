@@ -1,29 +1,33 @@
 const router = require('express').Router();
 
-module.exports = function ({ statusCodes }) {
+module.exports = function ({ statusCodes, eventManager }) {
 
-    router.get('/', (req, res) => {
-        res.status(statusCodes.OK).json("Hello from backend");
+
+    router.get('/', function (req, res) {
+        eventManager.getEvent(1);
+        res.status(statusCodes.OK).json("Hello from /GET");
     })
+
     router.get('/:id', (req, res) => {
 
         const id = req.params.id;
 
-        res.status(statusCodes.OK).json("Hello from backend");
+        res.status(statusCodes.OK).json("Hello from ");
     })
-    router.post('/', (req, res) => {
 
-        res.status(statusCodes.OK).json("Hello from backend");
-    })
-    router.patch('/:id', (req, res) => {
-        const id = req.params.id;
+    router.get('/journey/:journeyId', async (req, res) => {
+
+        const id = req.params.journeyId;
 
         res.status(statusCodes.OK).json(id);
     })
-    router.delete('/:id', (req, res) => {
-        const id = req.params.id;
 
-        res.status(statusCodes.NoContent).json(id);
+    router.post('/', async (req, res) => {
+
+        const data = req.body;
+
+        const result = await eventManager.createEvent(data);
+        res.status(statusCodes.OK).json(result);
     })
 
     return router

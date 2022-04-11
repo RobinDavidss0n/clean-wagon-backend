@@ -20,9 +20,12 @@ module.exports = function() {
 
 
         if (production==='1') {
+            console.log('##########################');
             console.log("USING PRODUCTION DATABASE");
             console.log("Database: " + database);
             console.log(host);
+            console.log('##########################');
+
             return mysql.createConnection({
                 host: host,
                 user: user,
@@ -30,8 +33,11 @@ module.exports = function() {
                 password: password
             })
         } else {
+            console.log('##########################');
             console.log('USING DEVELOPMENT DATABASE');
             console.log("Database: CleanWagon");
+            console.log('##########################');
+
             return mysql.createConnection({
             host: 'db',
             user: 'root',

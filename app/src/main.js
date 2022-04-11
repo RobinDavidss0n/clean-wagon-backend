@@ -15,7 +15,8 @@ container.register({
     /****************************************** BUSINESS LOGIC *******************************************/
     constants:          awilix.asFunction(require('./business-logic-layer/constants')),
     usersManager:       awilix.asFunction(require('./business-logic-layer/users-manager')),
-    coordinateManager:       awilix.asFunction(require('./business-logic-layer/coordinate-manager')),
+    coordinateManager:  awilix.asFunction(require('./business-logic-layer/coordinate-manager')),
+    eventManager:       awilix.asFunction(require('./business-logic-layer/event-manager')),
 
     /************************************************ API ************************************************/
     coordinateRouter: awilix.asFunction(require('./api/routes/coordinate-router-api')),
