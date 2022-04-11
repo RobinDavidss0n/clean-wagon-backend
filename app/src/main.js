@@ -11,6 +11,7 @@ container.register({
     QueryManager:       awilix.asFunction(require('./data-access-layer/query-manager')),
     usersRepo:          awilix.asFunction(require('./data-access-layer/users-repo')),
     coordinateRepo:     awilix.asFunction(require('./data-access-layer/coordinate-repo')), 
+    eventRepo:     awilix.asFunction(require('./data-access-layer/event-repo')), 
 
     /****************************************** BUSINESS LOGIC *******************************************/
     constants:          awilix.asFunction(require('./business-logic-layer/constants')),
