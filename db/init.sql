@@ -52,3 +52,12 @@ CREATE TABLE Events(
     PRIMARY KEY (id),
     FOREIGN KEY (coordinate_id) REFERENCES Coordinates(id)
 );
+
+
+/******************** INSERT INITIAL DATA *******************/
+
+INSERT IGNORE INTO Users (email, password, first_name, last_name)
+VALUES ('testUser@cln-wgn.com', 'secretPassword', 'Mike', 'Michaels');
+
+INSERT IGNORE INTO Mowers (mower_serial, user_id, is_online)
+VALUES ('CLN-WGN-1', 1, 0)
