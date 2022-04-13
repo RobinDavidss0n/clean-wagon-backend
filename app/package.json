@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/RobinDavidss0n/clean-wagon-backend#readme",
   "dependencies": {
+    "@google-cloud/vision": "^2.4.2",
     "awilix": "^7.0.1",
     "aws-sdk": "^2.1108.0",
     "body-parser": "^1.20.0",
