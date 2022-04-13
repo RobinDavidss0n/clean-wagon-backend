@@ -26,3 +26,13 @@ Time: 5h
 7 April:
 I was at an interview so I missed most of the lab session. I came at the end and used the time left to get up to speed with what the others had done and get familiar with the new add ons to the system.
 Time: 1h
+
+
+11 April:
+We had a sprint planning meeting in the morning. Later after lunch we in the backend were discussing architecture and implementing resources. We also discussed if we could have the backend more class orientated and I focused on trying to get classes to work with awilix. Did not find a solution today so needs more work next time.
+Time: 5h 30 min 
+
+
+13 April:
+First there was a lesson then we had a standup. After that I worked on implementing classes with awilix which Fredrik and I got working. After that I started making a class for the other classes to interfere with the database trough. Got it working and also came a long way on implementing the Journey class. I stayed after hours and sat for a long time as I would miss the whole next day due to personal interference.
+Time: 11h 30 min
