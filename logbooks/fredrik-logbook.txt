@@ -26,4 +26,10 @@ Time: 5 hrs
 Started working on implementing the functionality for the robot to send an image via an "event". For my part that meant creating a Mower class, writing code to create a standard user and a standard mower when initializing the database. Also started writing repository functions for the mower resource in the db.
 
 Time: 3,5 hrs
+
+11 April 2022
+Had the weekly spring planning meeting in the morning. Continued work in the afternoon with adding more functionality to the Mower and Coordinate resources and their respective classes. Had some discussions within the squad regarding the architecture, and whether we should contain database storage/retrieval functions within the class itself, or if such functions should be kept outside. We decided that Robin makes a trial for in-class option for the Journey resource to see if can make it work in a clean and concise way.
+
+
+Time: 4,5 hrs
  
