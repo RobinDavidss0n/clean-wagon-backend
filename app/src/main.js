@@ -5,6 +5,7 @@ const container = awilix.createContainer()
 container.register({
     /*********************************************** TESTS ***********************************************/
     usersTest:          awilix.asFunction(require('./tests/users-tests')),
+    journeyTest:        awilix.asFunction(require('./tests/journey-tests')),
 
     /******************************************** DATA ACCESS ********************************************/
     dbConnection:       awilix.asFunction(require('./data-access-layer/db')),
@@ -12,10 +13,11 @@ container.register({
     usersRepo:          awilix.asFunction(require('./data-access-layer/users-repo')),
     coordinateRepo:     awilix.asFunction(require('./data-access-layer/coordinate-repo')), 
     mowersRepo:         awilix.asFunction(require('./data-access-layer/mowers-repo')),
-    journeyRepo:        awilix.asFunction(require('./data-access-layer/journey-repo')),
+    journeyRepo:        awilix.asFunction(require('./data-access-layer/customQuerys/journey-repo')),
     
     /******************************************** CLASSES ********************************************/
-    Journey:       awilix.asClass(require('./data-access-layer/classes/journey-class')),
+    Journey:            awilix.asClass(require('./business-logic-layer/journey-class')),
+    DbBuddy:            awilix.asClass(require('./data-access-layer/classes/dbBuddy-class')),
 
     /****************************************** BUSINESS LOGIC *******************************************/
     constants:          awilix.asFunction(require('./business-logic-layer/constants')),

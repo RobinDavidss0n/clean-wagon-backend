@@ -45,11 +45,11 @@ module.exports = function ({ QueryManager }) {
 
 
     /**
-     * Gets the journey with the specified mover_id from the database.
+     * Gets the journeys with the specified mower_id from the database.
      * @param {string} id 
      * @returns {Promise<ResponseContainer>}
      */
-         exports.getJourneyByMowerId = async function(id) {
+         exports.getJourneysByMowerId = async function(id) {
             const query = `
             SELECT *
             FROM users
