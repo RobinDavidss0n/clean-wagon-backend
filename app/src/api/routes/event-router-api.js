@@ -6,9 +6,6 @@ const fs = require('fs');
 const util = require('util');
 const unlinkFile = util.promisify(fs.unlink);
 
-const { uploadFile, downloadFile } = require('../services/s3-bucket');
-const { detectObject } = require('../services/cloud-vision');
-
 module.exports = function ({ statusCodes, eventManager }) {
     const upload = multer({ dest: 'uploads/' })
 
@@ -22,29 +19,23 @@ module.exports = function ({ statusCodes, eventManager }) {
 
     router.post('/', upload.single('image'), async (req, res) => {
 
-        const image = req.file;
-        const coordinate_id = req.body.coordinate_id;
-        const event_type = req.body.event_type;
-        const upl = await uploadFile(image);
-
-        const obj = await detectObject(image)
-
         const event = {
-            coordinate_id: coordinate_id,
-            event_type: event_type,
-            filename: image.filename,
-            object_desc: obj[0].name
+            coordinate_id: req.body.coordinate_id,
+            event_type: req.body.event_type,
+            image: req.file
         }
+
         const result = await eventManager.createEvent(event);
-        await unlinkFile(image.path);
+        await unlinkFile(event.image.path);
 
-        const response = {
-            obj,
-            upl,
-            result
+        if (result.isSuccess) {
+            const response = { isSuccess: result.isSuccess, insertId: result.result.insertId }
+            res.status(statusCodes.Created).json(response)
+        } else if (result.errorCode === 400) {
+            res.status(statusCodes.BadRequest).json(result)
+        } else {
+            res.status(statusCodes.InternalServerError).json(result)
         }
-        res.status(statusCodes.Created).json(response)
-
     })
 
     return router

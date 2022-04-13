@@ -5,9 +5,7 @@ const fs = require('fs');
 const util = require('util');
 const unlinkFile = util.promisify(fs.unlink);
 
-const { uploadFile, downloadFile } = require('../services/s3-bucket');
-
-module.exports = function ({ statusCodes }) {
+module.exports = function ({ statusCodes, s3Bucket }) {
 
     const upload = multer({ dest: 'uploads/' })
 
@@ -19,11 +17,11 @@ module.exports = function ({ statusCodes }) {
         const id = req.params.id;
 
         try {
-            const readStream = downloadFile(id);
+            const readStream = s3Bucket.downloadFile(id);
             readStream.pipe(res)
         } catch (err) {
             console.log(err);
-            return res.status(400).json(error);
+            return res.status(400).json(err);
         }
 
         // res.status(statusCodes.OK).json("Hello from images");
@@ -31,7 +29,7 @@ module.exports = function ({ statusCodes }) {
     router.post('/', upload.single('image'), async (req, res) => {
 
         const image = req.file;
-        const result = await uploadFile(image);
+        const result = await s3Bucket.uploadFile(image);
 
         await unlinkFile(image.path);
 

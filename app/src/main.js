@@ -19,6 +19,11 @@ container.register({
     coordinateManager:  awilix.asFunction(require('./business-logic-layer/coordinate-manager')),
     eventManager:       awilix.asFunction(require('./business-logic-layer/event-manager')),
 
+    /******************************************** SERVICES ***********************************************/
+
+    s3Bucket: awilix.asFunction(require('./business-logic-layer/services/s3-bucket')),
+    googleVision: awilix.asFunction(require('./business-logic-layer/services/google-vision')),
+
     /************************************************ API ************************************************/
     coordinateRouter: awilix.asFunction(require('./api/routes/coordinate-router-api')),
     journeyRouter: awilix.asFunction(require('./api/routes/journey-router-api')),
