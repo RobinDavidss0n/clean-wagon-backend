@@ -28,6 +28,24 @@ module.exports = function({}) {
             return;
         }
 
+
+        /**
+         * Sets the object description for the event.
+         * @param {string} desc
+         */
+        set object_desc(desc) {
+            this.object_desc = desc
+        }
+
+
+        /**
+         * Returns the event's object description
+         * @returns {string}
+         */
+        get object_desc() {
+            return this.object_desc
+        }
+
     }
     
     return exports
