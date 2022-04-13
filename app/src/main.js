@@ -13,6 +13,9 @@ container.register({
     coordinateRepo:     awilix.asFunction(require('./data-access-layer/coordinate-repo')), 
     mowersRepo:         awilix.asFunction(require('./data-access-layer/mowers-repo')),
     journeyRepo:        awilix.asFunction(require('./data-access-layer/journey-repo')),
+    
+    /******************************************** CLASSES ********************************************/
+    Journey:       awilix.asClass(require('./data-access-layer/classes/journey-class')),
 
     /****************************************** BUSINESS LOGIC *******************************************/
     constants:          awilix.asFunction(require('./business-logic-layer/constants')),
@@ -27,7 +30,6 @@ container.register({
     imageRouter:        awilix.asFunction(require('./api/routes/image-router-api')),
     apiRouter:          awilix.asFunction(require('./api/routes/router-api')),
     mowersRouter:       awilix.asFunction(require('./api/routes/mowers-router-api')),
-
     statusCodes:        awilix.asFunction(require('./api/statusCodeHandler')),
 
     /******************************************** APPLICATION ********************************************/
