@@ -42,7 +42,7 @@ Time: 4,5 hrs
 
 
 13 April 2022
-Attended the morning lecture on LIDAR. Worked on making the classes of the backend application compatible with Awilix Dependency Injection. Had some more lengthy (and interesting) discussions on the general architecture of the application regarding how extensively classes should be used.
+Attended the morning lecture on LIDAR. Worked on making the classes of the backend application compatible with Awilix Dependency Injection. Had some more lengthy (and interesting) discussions on the general architecture of the application regarding how extensively classes should be used. Also formulated most (?) of the low level requirements needed for the backend.
 
 Time: 6 hrs
  
