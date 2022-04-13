@@ -9,7 +9,7 @@ module.exports = function({ Journey }) {
         // console.log("journeyTests -> journey resultQuery:")
         // console.log(resultQuery)
 
-        console.log("journeyTests -> journey id: " + journey.id)
+        journey.visualValidation()
 
         
 
@@ -20,8 +20,9 @@ module.exports = function({ Journey }) {
 
         // console.log("journeyTests -> journey2 resultQuery2:")
         // console.log(resultQuery2)
+        
+        // journey2.visualValidation()
 
-        // console.log("journeyTests -> journey2 id: " + journey2.id)
     }
 
     return exports
