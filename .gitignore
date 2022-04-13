@@ -105,3 +105,5 @@ dist
 
 # Mac hidden files
 *.DS_Store
+
+google-api-key.json
