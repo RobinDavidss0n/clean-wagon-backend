@@ -1,7 +1,6 @@
-const Mower = require('../data-access-layer/classes/mower-class')
 const ResponseContainer = require('../data-access-layer/classes/response-container-class')
 
-module.exports = function({mowersRepo, constants}) {
+module.exports = function({mowersRepo, constants, Mower}) {
 
     const exports = {}
     const errorCodes = constants.errorCodes

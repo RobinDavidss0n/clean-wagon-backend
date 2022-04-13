@@ -1,7 +1,6 @@
-const Coordinate = require('../data-access-layer/classes/coordinate-class')
 const ResponseContainer = require('../data-access-layer/classes/response-container-class')
 
-module.exports = function ({ coordinateRepo, constants }) {
+module.exports = function ({ coordinateRepo, constants, Coordinate }) {
 
     const exports = {}
     const errorCodes = constants.errorCodes

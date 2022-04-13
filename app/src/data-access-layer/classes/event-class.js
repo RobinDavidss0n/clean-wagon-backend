@@ -6,7 +6,7 @@ module.exports = function({}) {
 
     const exports = {}
 
-    exports.getInstance() = class {
+    exports.getInstance = class {
     
         coordinate_id
         event_type

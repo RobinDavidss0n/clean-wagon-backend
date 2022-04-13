@@ -1,7 +1,6 @@
-const User = require('../data-access-layer/classes/user-class') 
 const ResponseContainer = require('../data-access-layer/classes/response-container-class')
 
-module.exports = function({usersRepo, constants}) {
+module.exports = function({usersRepo, constants, User}) {
 
     const exports = {}
     const errorCodes = constants.errorCodes
@@ -12,7 +11,7 @@ module.exports = function({usersRepo, constants}) {
      * @returns {Promise<ResponseContainer>}
      */
     exports.createUser = async function(user) {
-       
+
         const errors = user.validate()
 
         if (errors.length) {

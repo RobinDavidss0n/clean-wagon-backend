@@ -1,6 +1,4 @@
-const User = require('../data-access-layer/classes/user-class') 
-
-module.exports = function({usersManager}) {
+module.exports = function({usersManager, User}) {
 
     const exports = {}
 
@@ -45,10 +43,10 @@ module.exports = function({usersManager}) {
         tooShortPassword = 'only5'
         
         // Create new user instances:
-        validUser = new User(validEmail, validPassword, validFirstName, validLastName)
-        invalidUser1 = new User(invalidEmail, validPassword, tooShortFirstName, validLastName)
-        invalidUser2 = new User(tooShortEmail, tooShortPassword, validFirstName, tooShortLastName)
-        invalidUser3 = new User(duplicateEmail, validPassword, validFirstName, validLastName)
+        validUser = new User.getInstance(validEmail, validPassword, validFirstName, validLastName)
+        invalidUser1 = new User.getInstance(invalidEmail, validPassword, tooShortFirstName, validLastName)
+        invalidUser2 = new User.getInstance(tooShortEmail, tooShortPassword, validFirstName, tooShortLastName)
+        invalidUser3 = new User.getInstance(duplicateEmail, validPassword, validFirstName, validLastName)
 
         // Try to add the users:
         test1 = await usersManager.createUser(validUser)

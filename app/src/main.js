@@ -24,6 +24,7 @@ container.register({
     Mower:              awilix.asFunction(require('./data-access-layer/classes/mower-class')),
     Event:              awilix.asFunction(require('./data-access-layer/classes/event-class')),
     Coordinate:         awilix.asFunction(require('./data-access-layer/classes/coordinate-class')),
+    User:               awilix.asFunction(require('./data-access-layer/classes/user-class')),
 
     /*** SERVICES *****************************************************************************************/
     s3Bucket:           awilix.asFunction(require('./business-logic-layer/services/s3-bucket')),
