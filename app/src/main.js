@@ -11,7 +11,7 @@ container.register({
     QueryManager:       awilix.asFunction(require('./data-access-layer/query-manager')),
     usersRepo:          awilix.asFunction(require('./data-access-layer/users-repo')),
     coordinateRepo:     awilix.asFunction(require('./data-access-layer/coordinate-repo')), 
-    eventRepo:     awilix.asFunction(require('./data-access-layer/event-repo')), 
+    eventRepo:          awilix.asFunction(require('./data-access-layer/event-repo')), 
     mowersRepo:         awilix.asFunction(require('./data-access-layer/mowers-repo')),
 
     /****************************************** BUSINESS LOGIC *******************************************/
@@ -19,12 +19,12 @@ container.register({
     usersManager:       awilix.asFunction(require('./business-logic-layer/users-manager')),
     coordinateManager:  awilix.asFunction(require('./business-logic-layer/coordinate-manager')),
     eventManager:       awilix.asFunction(require('./business-logic-layer/event-manager')),
+    mowersManager:      awilix.asFunction(require('./business-logic-layer/mowers-manager')),
 
     /******************************************** SERVICES ***********************************************/
 
-    s3Bucket: awilix.asFunction(require('./business-logic-layer/services/s3-bucket')),
-    googleVision: awilix.asFunction(require('./business-logic-layer/services/google-vision')),
-    mowersManager:      awilix.asFunction(require('./business-logic-layer/mowers-manager')),
+    s3Bucket:           awilix.asFunction(require('./business-logic-layer/services/s3-bucket')),
+    googleVision:       awilix.asFunction(require('./business-logic-layer/services/google-vision')),
 
     /************************************************ API ************************************************/
     coordinateRouter:   awilix.asFunction(require('./api/routes/coordinate-router-api')),
