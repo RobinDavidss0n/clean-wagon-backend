@@ -1,7 +1,6 @@
-const Coordinate = require('../data-access-layer/classes/coordinate-class')
 const ResponseContainer = require('../data-access-layer/classes/response-container-class')
 
-module.exports = function ({ coordinateRepo, constants }) {
+module.exports = function ({ coordinateRepo, constants, Coordinate }) {
 
     const exports = {}
     const errorCodes = constants.errorCodes
@@ -17,6 +16,17 @@ module.exports = function ({ coordinateRepo, constants }) {
 
         return await coordinateRepo.createCoordinate(coordinate)
 
+    }
+
+
+    /**
+     * Returns all coordinates that belong to the given journey id.
+     * @param {string} journeyId 
+     * @returns {Promise<ResponseContainer>}
+     */
+    exports.getCoordinatesByJourneyId = async function(journeyId) {
+
+        return await coordinateRepo.getCoordinatesByJourneyId(journeyId)
     }
 
     return exports

@@ -3,10 +3,10 @@ const awilix = require('awilix')
 const container = awilix.createContainer()
 
 container.register({
-    /*********************************************** TESTS ***********************************************/
+    /*** TESTS ********************************************************************************************/
     usersTest:          awilix.asFunction(require('./tests/users-tests')),
 
-    /******************************************** DATA ACCESS ********************************************/
+    /*** DATA ACCESS **************************************************************************************/
     dbConnection:       awilix.asFunction(require('./data-access-layer/db')),
     QueryManager:       awilix.asFunction(require('./data-access-layer/query-manager')),
     usersRepo:          awilix.asFunction(require('./data-access-layer/users-repo')),
@@ -14,19 +14,23 @@ container.register({
     eventRepo:          awilix.asFunction(require('./data-access-layer/event-repo')), 
     mowersRepo:         awilix.asFunction(require('./data-access-layer/mowers-repo')),
 
-    /****************************************** BUSINESS LOGIC *******************************************/
+    /*** BUSINESS LOGIC ***********************************************************************************/
     constants:          awilix.asFunction(require('./business-logic-layer/constants')),
     usersManager:       awilix.asFunction(require('./business-logic-layer/users-manager')),
     coordinateManager:  awilix.asFunction(require('./business-logic-layer/coordinate-manager')),
     eventManager:       awilix.asFunction(require('./business-logic-layer/event-manager')),
     mowersManager:      awilix.asFunction(require('./business-logic-layer/mowers-manager')),
 
-    /******************************************** SERVICES ***********************************************/
+    /*** CLASSES ******************************************************************************************/
+    Mower:              awilix.asFunction(require('./data-access-layer/classes/mower-class')),
+    Event:              awilix.asFunction(require('./data-access-layer/classes/event-class')),
+    Coordinate:         awilix.asFunction(require('./data-access-layer/classes/coordinate-class')),
+    User:               awilix.asFunction(require('./data-access-layer/classes/user-class')),
 
     s3Bucket:           awilix.asFunction(require('./business-logic-layer/services/s3-bucket')),
     googleVision:       awilix.asFunction(require('./business-logic-layer/services/google-vision')),
 
-    /************************************************ API ************************************************/
+    /*** API **********************************************************************************************/
     coordinateRouter:   awilix.asFunction(require('./api/routes/coordinate-router-api')),
     journeyRouter:      awilix.asFunction(require('./api/routes/journey-router-api')),
     eventRouter:        awilix.asFunction(require('./api/routes/event-router-api')),
@@ -36,7 +40,7 @@ container.register({
 
     statusCodes:        awilix.asFunction(require('./api/statusCodeHandler')),
 
-    /******************************************** APPLICATION ********************************************/
+    /*** APPLICATION **************************************************************************************/
     app:                awilix.asFunction(require('./api/index'))
 })
 

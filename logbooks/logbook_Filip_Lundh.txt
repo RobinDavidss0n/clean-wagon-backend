@@ -4,12 +4,16 @@ Tuesday March 28 -
  - Gathered the whole team and introduced ourselves
  - Decided to use SCRUM as our method of working with the project
  - We split up into teams and are now working in different teams of 3 for each part of the system (backend, mobile-app and mower)
+
+2,5h
  
 Wednesday March 30 -
  - Group meeting on what to focus on in the start
  - Set up our source code in GitHub
  - Initialised our backend environment, using node.js and structured the folders
  - Added docker and docker-compose files
+
+5h
 
 Thursday March 31 -
  - Continued our work on the folder structure and added awilix for dependency injection
@@ -19,10 +23,13 @@ Thursday March 31 -
  - created overall system architecture in draw.io
  - created table relations architecture in draw.io
 
+5,5h
 
 Tuesday April 5 -
  - Added nginx reverse proxy for AWS instance which routes traffic from port 80 to our application at port 3000
  - Started working on AWS RDS and S3 buckets
+
+4h
 
 Wednesday April 6 -
  - Set up AWS S3 bucket for uploading images taken by the mower
@@ -30,8 +37,36 @@ Wednesday April 6 -
  - Created an API endpoint for uploading a file via HTTP request to our S3 bucket
  - Created an API endpoint for downloading a file via HTTP request from our S3 bucket
 
+6h
+
  Thursday April 7 -
   - Set up AWS RDS instance for our production MySQL database
   - Set up connection to this AWS RDS MySQL with our node application
   - Changed our env file to be able to select between our production db and test docker db 
   - Started working on API for mowers to send coordinates
+
+5h
+
+Monday April 11 - 
+   - Set up Google Vision API
+   - Added and configured the Vision API in our backend application
+   - Added repository and class for events
+   - Created business logic layer for events
+
+6h
+
+Wednesday April 13 -
+ - Moved s3bucket service and google vision service to business logic layer
+ - Added validation to event requests
+ - Moved all file upload and google vision logic to business logic layer
+
+5h
+
+Thursday April 14 -
+ - Attended Lecture
+ - Meeting with Backend team
+ - Started looking into classes for error handling
+
+4h
+
+
