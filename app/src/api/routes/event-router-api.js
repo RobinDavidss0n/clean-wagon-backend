@@ -13,8 +13,13 @@ module.exports = function ({ statusCodes, eventManager }) {
 
         const event_id = req.params.event_id
         const result = await eventManager.getEvent(event_id);
-
-        res.status(statusCodes.OK).json(result);
+        if(result.isSuccess) {
+            res.status(statusCodes.OK).json(result.result[0]);
+        } else if (result.errorCode === 'eventNotFound') {
+            res.status(statusCodes.NotFound).json(result);
+        } else {
+            res.status(statusCodes.InternalServerError).json(result);
+        }
     })
 
     router.post('/', upload.single('image'), async (req, res) => {
@@ -27,7 +32,7 @@ module.exports = function ({ statusCodes, eventManager }) {
 
         const result = await eventManager.createEvent(event)
 
-        if(event.image.path != undefined) await unlinkFile(event.image.path)
+        if(event.image != undefined) await unlinkFile(event.image.path)
 
         if (result.isSuccess) {
             const response = { isSuccess: result.isSuccess, insertId: result.result.insertId }
