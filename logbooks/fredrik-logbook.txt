@@ -45,4 +45,16 @@ Time: 4,5 hrs
 Attended the morning lecture on LIDAR. Worked on making the classes of the backend application compatible with Awilix Dependency Injection. Had some more lengthy (and interesting) discussions on the general architecture of the application regarding how extensively classes should be used. Also formulated most (?) of the low level requirements needed for the backend.
 
 Time: 6 hrs
+
+
+19 April
+Attended the lecture on localization.
+
+Time: 2 hrs
+
+
+20 April 2022
+Continued the planning of the class-based architecture with regard to resource handling. Also panned out the REST API architecture and data flow between the backend and the mower and smartphone app in liaison with the mower and app squads respectively.
+
+Time: 5 hrs
  
