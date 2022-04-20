@@ -25,8 +25,9 @@ module.exports = function ({ statusCodes, eventManager }) {
             image: req.file
         }
 
-        const result = await eventManager.createEvent(event);
-        await unlinkFile(event.image.path);
+        const result = await eventManager.createEvent(event)
+
+        if(event.image.path != undefined) await unlinkFile(event.image.path)
 
         if (result.isSuccess) {
             const response = { isSuccess: result.isSuccess, insertId: result.result.insertId }

@@ -13,27 +13,29 @@ module.exports = function ({ statusCodes, s3Bucket }) {
 
         res.status(statusCodes.OK).json("Hello from images");
     })
-    router.get('/:id', (req, res) => {
+    router.get('/:id', async (req, res) => {
         const id = req.params.id;
 
         try {
-            const readStream = s3Bucket.downloadFile(id);
+            const readStream = await s3Bucket.downloadFile(id);
             readStream.pipe(res)
         } catch (err) {
             console.log(err);
             return res.status(400).json(err);
         }
-
-        // res.status(statusCodes.OK).json("Hello from images");
     })
+    
     router.post('/', upload.single('image'), async (req, res) => {
 
         const image = req.file;
-        const result = await s3Bucket.uploadFile(image);
 
-        await unlinkFile(image.path);
-
-        res.status(statusCodes.Created).json(result)
+        if(image!== undefined) {
+            const result = await s3Bucket.uploadFile(image);
+            await unlinkFile(image.path);
+            res.status(statusCodes.Created).json(result)
+        } else {
+            res.status(statusCodes.BadRequest).json({ errorCode: 400, errorMessage: 'No image in request.'})
+        }
     })
 
     return router
