@@ -3,28 +3,64 @@ module.exports = function ({ QueryManager }) {
 
     const exports = class {
 
-        #m_class
+        #id
+
         #className
         #memberNames = ""
         #memberQuestionmarks = ""
         #memberValues = []
 
-        constructor(givenClass) {
+        constructor(className) {
+            this.#className = className
+        }
 
-            if (givenClass != null) {
-                this.#m_class = givenClass
-                this.#className = this.#m_class.getClassName()
+        getId() {
+            return this.#id
+        }
 
-                for (const memberName in this.#m_class) {
+        /**
+         * Creates the query info that is used when
+         * interacting with the database.
+         */
+        createQueryInfo() {
 
-                    this.#memberNames += memberName + ","
+            for (const memberName in this) {
 
-                    this.#memberQuestionmarks += "?,"
+                this.#memberNames += memberName + ","
 
-                    this.#memberValues.push(this.#m_class[memberName])
-                }
-                this.#memberNames = this.#memberNames.slice(0, -1)
-                this.#memberQuestionmarks = this.#memberQuestionmarks.slice(0, -1)
+                this.#memberQuestionmarks += "?,"
+            }
+            this.#memberNames = this.#memberNames.slice(0, -1)
+            this.#memberQuestionmarks = this.#memberQuestionmarks.slice(0, -1)
+        }
+
+        /**
+         * Takes the members that the child class has
+         * and put them into memberValues
+         * to be used when interacting with the database.
+         * This Should allways be done before interacting
+         * with the database to ensue all the members values are
+         * updated before they are used with the database.
+         */
+        updateQueryValues() {
+            console.log("updateQueryValues")
+            this.#memberValues = []
+            for (const memberName in this) {
+                this.#memberValues.push(this[memberName])
+            }
+        }
+
+        /**
+         * Updates the local memebrs in the class instance.
+         * This should be called after getting new data from
+         * the database.
+         * @param {object} result 
+         */
+        #updateClassMembers(result) {
+            console.log("DbBuddy -> updateClassMembers -> result:")
+            console.log(result)
+            for (const key in result) {
+                this[key] = result[key]
             }
         }
 
@@ -36,14 +72,21 @@ module.exports = function ({ QueryManager }) {
          */
         async get() {
 
+            this.updateQueryValues()
+
             const query = `
             SELECT *
             FROM ${this.#className}s
             WHERE id = ?
             LIMIT 1
             `
+            const responseContainer = await QueryManager.runQuery(query, this.#memberValues, this.#className)
 
-            return await QueryManager.runQuery(query, this.#memberValues, this.#className)
+            if (responseContainer.isSuccess) {
+                this.#updateClassMembers(responseContainer.result)
+            }
+
+            return responseContainer
         }
 
         /**
@@ -54,6 +97,8 @@ module.exports = function ({ QueryManager }) {
          * @param {undefined} value 
          */
         async getBy(attributeName, value) {
+
+            this.updateQueryValues()
 
             const query = `
                     SELECT *
@@ -71,12 +116,23 @@ module.exports = function ({ QueryManager }) {
          * @returns {Promise<ResponseContainer>}
          */
         async insert() {
+
+            this.updateQueryValues()
+
+            this.visualValidation()
             const query = `
             INSERT INTO ${this.#className}s (${this.#memberNames})
             VALUES (${this.#memberQuestionmarks})
             `
+            console.log(" ")
+            console.log("Query: ")
+            console.log(query)
+
+            console.log(" ")
+            console.log("Values: ")
+            console.log(this.#memberValues)
             return await QueryManager.runQuery(query, this.#memberValues, this.#className)
-  
+
         }
 
         /**
@@ -85,11 +141,20 @@ module.exports = function ({ QueryManager }) {
          * @returns {Promise<ResponseContainer>}
          */
         async update() {
+
+            this.updateQueryValues()
+
             const query = `
             UPDATE ${this.#className}s (${this.#memberNames})
             SET (${this.#memberQuestionmarks})
+            WHERE id = ?
             `
-            return await QueryManager.runQuery(query, this.#memberValues, this.#className)
+
+            const responseContainer = await QueryManager.runQuery(query, this.#memberValues, this.#className)
+
+            if (responseContainer.isSuccess) {
+                u
+            }
         }
 
         async delete() {
@@ -104,12 +169,26 @@ module.exports = function ({ QueryManager }) {
          * @returns {Promise<ResponseContainer>}
          */
         async getAllFrom(table) {
+
+            this.updateQueryValues()
+
             const query = `
             SELECT *
             FROM ${table}
             WHERE ${this.#className.toLowerCase()}_id = ?
             `
-            return await QueryManager.runQuery(query, [this.#m_class.id], table.slice(0, -1))
+            return await QueryManager.runQuery(query, [this.id], table.slice(0, -1))
+        }
+
+        /**
+         * Validates the members of the User class instance
+         * by printing them into the terminal.
+         */
+        visualValidation() {
+            for (const memberName in this) {
+                console.log(`${this.#className} class -> ${memberName}: ` + this[memberName])
+            }
+
         }
 
     }
