@@ -36,3 +36,13 @@ Time: 5h 30 min
 13 April:
 First there was a lesson then we had a standup. After that I worked on implementing classes with awilix which Fredrik and I got working. After that I started making a class for the other classes to interfere with the database trough. Got it working and also came a long way on implementing the Journey class. I stayed after hours and sat for a long time as I would miss the whole next day due to personal interference.
 Time: 11h 30 min
+
+
+20 April:
+I remade the DbBuddy class to be a parent class and the Journey class to be a child class of the DbBuddy class. I was able to insert an instance to the DB with this method, still some work to do on the class structure. Also made some basic diagrams of communications between the robot/app and backend. We went through these diagrams with robot/app gangs so the whole group is on the same page.
+Time: 5h 30 min
+
+
+21 April:
+Finished the DbBuddy class and the Journey. Merged them into the pre-production branch. Had a small team meeting and explained flow charts for communication for the app gang. Co coded with Fredrik to rewrite all resources to use the new class system and finished making proper tests for the Journey class.
+Time: 6h 15 min
