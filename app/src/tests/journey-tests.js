@@ -1,61 +1,121 @@
 module.exports = function({ Journey }) {
     const exports = {}
 
-    exports.test = async function(){
+
+    exports.runAllJourneyTests = async function() {
+
+        createSuccess = await exports.create()
+        getSuccess = await exports.get()
+        updateSuccess = await exports.update()
+        getBySuccess = await exports.getBy()
+        getAllSuccess = await exports.getAll()
 
 
-        var journey = new Journey(1)
-        var resultQuery = await journey.insert()
+        if (!createSuccess) {
+            console.log('CreateJourney test failed.')
+        }
 
-        console.log('\n')
-        console.log("\njourneyTests -> journey resultQuery:")
-        console.log(resultQuery)
+        if (!getSuccess) {
+            console.log('GetJourney test failed.')
+        }
 
-        //**************** journey.get() ****************
+        if (!updateSuccess) {
+            console.log('UpdateJourney test failed.')
+        }
 
-        var journey = new Journey()
-        var resultQuery = await journey.get(1)
+        if (!getBySuccess) {
+            console.log('getByJourney test failed.')
+        }
 
-        console.log("\njourneyTests -> journey resultQuery:")
-        console.log(resultQuery)
+        if (!getAllSuccess) {
+            console.log('getAllJourney test failed.')
+        }
+
+        if(createSuccess && getSuccess && updateSuccess && getBySuccess && getAllSuccess) {
+            console.log('Journey tests passed!')
+        }
+    }
+
+
+    exports.create = async function() {
         
-        journey.visualValidation()
-
-
-        // **************** journey.update() ****************
+        const successJourney = new Journey(1) // should succeed
+        const failJourney = new Journey(999) // should fail
         
-        var journey = new Journey()
+        const test1 = await successJourney.insert()
+        const test2 = await failJourney.insert()
+
+        test1Success = (test1.isSuccess && test1.result.affectedRows == 1)
+        test2Success = (!test2.isSuccess && test2.errorCode == 'internalError' && test2.errorStack.includes('foreign key constraint'))
+
+        return test1Success && test2Success
+    }
+
+
+    exports.get = async function() {
+
+        const successJourney = new Journey()
+        const failJourney = new Journey()
+        
+        const test1 = await successJourney.get(1)
+        const test2 = await failJourney.get(999)
+
+        test1Success = (test1.isSuccess && test1.result[0].id == 1)
+        test2Success = (!test2.isSuccess && test2.errorCode == 'JourneyNotFound')
+
+        return test1Success && test2Success
+    }
+
+
+    exports.update = async function() {
+
+        const journey = new Journey()
         await journey.get(1)
-        journey.visualValidation()
 
         journey.end_time = new Date()
-        journey.start_time = new Date()
-        journey.visualValidation()
 
-        var resultQuery = await journey.update()
-        console.log("\njourneyTests -> journey resultQuery:")
-        console.log(resultQuery)
+        const test1 = await journey.update()
+
+        const journey2 = new Journey()
+        const test2 = await journey2.get(1)
+
+        journey.start_time = 'fail' // not a datetime value
+        const test3 = await journey.update()
+
+        test1Success = (test1.isSuccess && test2.result[0].end_time != null && journey2.end_time != null)
+        test2Success = (!test3.isSuccess && test3.errorCode == 'internalError' && test3.errorStack.includes('Incorrect datetime value')) 
+
+        return test1Success && test2Success
+    }
 
 
-        // **************** journey.getBy() ****************
+    exports.getBy = async function() {
 
-        var journey = new Journey()
-        var resultQuery = await journey.getBy("mower_id", 1)
+        const successJourney = new Journey()
+        const failJourney = new Journey()
+        
+        const test1 = await successJourney.getBy("mower_id", 1)
+        const test2 = await failJourney.getBy("mower_id", 999)
 
-        console.log("\njourneyTests -> journey resultQuery:")
-        console.log(resultQuery)
+        test1Success = (test1.isSuccess && test1.result[0].id == 1)
+        test2Success = (!test2.isSuccess && test2.errorCode == 'JourneyNotFound')
 
-        // **************** journey.getAllFrom() ****************
+        return test1Success && test2Success
+    }
 
-        var journey = new Journey()
+
+    exports.getAll = async function() {
+
+        const journey = new Journey()
         await journey.get(1)
+        
+        const test1 = await journey.getAll('Coordinates')
+        const test2 = await journey.getAll('Mowers')
 
-        resultQuery = await journey.getAll("Coordinates")
+        test1Success = (test1.isSuccess && test1.result[0].x == 1337)
+        test2Success = (!test2.isSuccess && test2.errorCode == 'internalError' && test2.errorStack.includes('Unknown column'))
 
-        console.log("\njourneyTests -> journey resultQuery:")
-        console.log(resultQuery)
-
-
+        return test1Success && test2Success
     }
 
     return exports

@@ -1,5 +1,5 @@
 // Toggle test runs:
-const willRunTests = false
+const willRunTests = true
 const express = require('express')    
 const bodyParser = require('body-parser')
 
@@ -38,8 +38,8 @@ module.exports = function ({usersTest, statusCodes, apiRouter, imageRouter, coor
     /************************************ Run tests *************************************/
     if (willRunTests) {
         console.log('Running tests...\n')
-        usersTest.runAllUsersTests()
-        journeyTest.test()
+        //usersTest.runAllUsersTests()
+        journeyTest.runAllJourneyTests()
     }
 
 

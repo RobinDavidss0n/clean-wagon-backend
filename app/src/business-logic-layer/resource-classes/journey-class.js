@@ -1,3 +1,6 @@
+/**
+ * @class Journey
+ */
 
 module.exports = function ({ DbBuddy }) {
 
