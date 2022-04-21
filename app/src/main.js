@@ -5,6 +5,7 @@ const container = awilix.createContainer()
 container.register({
     /*** TESTS ********************************************************************************************/
     usersTest:          awilix.asFunction(require('./tests/users-tests')),
+    journeyTest:        awilix.asFunction(require('./tests/journey-tests')),
 
     /*** DATA ACCESS **************************************************************************************/
     dbConnection:       awilix.asFunction(require('./data-access-layer/db')),
@@ -26,6 +27,8 @@ container.register({
     Event:              awilix.asFunction(require('./data-access-layer/classes/event-class')),
     Coordinate:         awilix.asFunction(require('./data-access-layer/classes/coordinate-class')),
     User:               awilix.asFunction(require('./data-access-layer/classes/user-class')),
+    Journey:            awilix.asClass(require('./business-logic-layer/journey-class')),
+    DbBuddy:            awilix.asClass(require('./data-access-layer/classes/dbBuddy-class')),
 
     s3Bucket:           awilix.asFunction(require('./business-logic-layer/services/s3-bucket')),
     googleVision:       awilix.asFunction(require('./business-logic-layer/services/google-vision')),

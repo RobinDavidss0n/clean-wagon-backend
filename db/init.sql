@@ -60,4 +60,10 @@ INSERT IGNORE INTO Users (email, password, first_name, last_name)
 VALUES ('testUser@cln-wgn.com', 'secretPassword', 'Mike', 'Michaels');
 
 INSERT IGNORE INTO Mowers (mower_serial, user_id, is_online)
-VALUES ('CLN-WGN-1', 1, 0)
+VALUES ('CLN-WGN-1', 1, 0);
+
+INSERT IGNORE INTO Journeys (mower_id, start_time, end_time)
+VALUES (1, NOW(), null);
+
+INSERT IGNORE INTO Coordinates (journey_id, x, y, time)
+VALUES (1, 1337, 69, NOW());

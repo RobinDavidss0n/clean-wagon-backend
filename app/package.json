@@ -4,7 +4,7 @@
   "description": "backend code for clean wagon backend",
   "main": "/api/index.js",
   "scripts": {
-    "start": "nodemon src/main.js"
+    "start": "nodemon -L src/main.js"
   },
   "repository": {
     "type": "git",

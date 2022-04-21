@@ -18,5 +18,10 @@ module.exports = function() {
         MIN_PASSWORD_LENGTH: 8
     }
 
+    exports.constructorAction = Object.freeze({
+        NEW: 0,
+        GET: 1
+    })
+
     return exports
 }
