@@ -3,25 +3,56 @@ module.exports = function({ Journey }) {
 
     exports.test = async function(){
 
-        const journey = new Journey(1, 1, null)
-        journey.visualValidation()
-        const resultQuery = await journey.insert()
+        // var journey = new Journey(1)
+        // var resultQuery = await journey.insert()
 
-        console.log("journeyTests -> journey resultQuery:")
-        console.log(resultQuery)
+        // console.log("journeyTests -> journey resultQuery:")
+        // console.log(resultQuery)
 
+        //**************** journey.get() ****************
 
+        // var journey = new Journey()
+        // var resultQuery = await journey.get(1)
+
+        // console.log("journeyTests -> journey resultQuery:")
+        // console.log(resultQuery)
         
+        // journey.visualValidation()
 
-        //**************** journey.get() IN PROGRESS ****************
 
-        // const journey2 = new Journey(1)
-        // const resultQuery2 = await journey2.get()
-
-        // console.log("journeyTests -> journey2 resultQuery2:")
-        // console.log(resultQuery2)
+        // //**************** journey.update() ****************
         
-        // journey2.visualValidation()
+        // let journey = new Journey()
+        // await journey.get(1)
+        // journey.visualValidation()
+
+        // journey.end_time = new Date()
+        // journey.start_time = new Date()
+        // journey.visualValidation()
+
+        // var resultQuery = await journey.update()
+        // console.log("journeyTests -> journey resultQuery:")
+        // console.log(resultQuery)
+
+
+        //**************** journey.getBy() ****************
+
+        // let journey = new Journey()
+        // var resultQuery = await journey.getBy("mower_id", 1)
+
+        // console.log("journeyTests -> journey resultQuery:")
+        // console.log(resultQuery)
+
+        //**************** journey.getAllFrom() ****************
+
+        // let journey = new Journey()
+        // await journey.get(1)
+
+        // resultQuery = await journey.getAll("Coordinates")
+
+        // console.log("journeyTests -> journey resultQuery:")
+        // console.log(resultQuery)
+
 
     }
 

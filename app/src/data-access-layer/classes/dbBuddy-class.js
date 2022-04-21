@@ -43,7 +43,6 @@ module.exports = function ({ QueryManager }) {
          * updated before they are used with the database.
          */
         updateQueryValues() {
-            console.log("updateQueryValues")
             this.#memberValues = []
             for (const memberName in this) {
                 this.#memberValues.push(this[memberName])
@@ -57,22 +56,45 @@ module.exports = function ({ QueryManager }) {
          * @param {object} result 
          */
         #updateClassMembers(result) {
-            console.log("DbBuddy -> updateClassMembers -> result:")
-            console.log(result)
             for (const key in result) {
-                this[key] = result[key]
+                if(key != "id"){
+                    this[key] = result[key]
+                }
             }
         }
 
 
         /**
-         * Get a resource from the database
-         * with the current class instance's id.
+         * Insert a new resource into the database
+         * from the current class instance values.
          * @returns {Promise<ResponseContainer>}
          */
-        async get() {
+        async insert() {
 
             this.updateQueryValues()
+
+            const query = `
+            INSERT INTO ${this.#className}s (${this.#memberNames})
+            VALUES (${this.#memberQuestionmarks})
+            `
+
+            const responseContainer = await QueryManager.runQuery(query, this.#memberValues, this.#className)
+
+            if (responseContainer.isSuccess) {
+                responseContainer
+                this.#id = responseContainer.result.insertId
+            }
+            
+            return responseContainer
+
+        }
+
+        /**
+         * Get a resource from the database with an id.
+         * @param {string} id 
+         * @returns {Promise<ResponseContainer>}
+         */
+        async get(id) {
 
             const query = `
             SELECT *
@@ -80,10 +102,12 @@ module.exports = function ({ QueryManager }) {
             WHERE id = ?
             LIMIT 1
             `
-            const responseContainer = await QueryManager.runQuery(query, this.#memberValues, this.#className)
+            const responseContainer = await QueryManager.runQuery(query, [id], this.#className)
 
             if (responseContainer.isSuccess) {
-                this.#updateClassMembers(responseContainer.result)
+                this.#id = id
+                this.#updateClassMembers(responseContainer.result[0])
+                this.updateQueryValues()
             }
 
             return responseContainer
@@ -111,50 +135,36 @@ module.exports = function ({ QueryManager }) {
         }
 
         /**
-         * Insert a new resource into the database
-         * from the current class instance values.
-         * @returns {Promise<ResponseContainer>}
-         */
-        async insert() {
-
-            this.updateQueryValues()
-
-            this.visualValidation()
-            const query = `
-            INSERT INTO ${this.#className}s (${this.#memberNames})
-            VALUES (${this.#memberQuestionmarks})
-            `
-            console.log(" ")
-            console.log("Query: ")
-            console.log(query)
-
-            console.log(" ")
-            console.log("Values: ")
-            console.log(this.#memberValues)
-            return await QueryManager.runQuery(query, this.#memberValues, this.#className)
-
-        }
-
-        /**
          * Update a resource in the database
          * from the current class instance values.
          * @returns {Promise<ResponseContainer>}
          */
         async update() {
+            
 
             this.updateQueryValues()
-
-            const query = `
-            UPDATE ${this.#className}s (${this.#memberNames})
-            SET (${this.#memberQuestionmarks})
-            WHERE id = ?
-            `
-
-            const responseContainer = await QueryManager.runQuery(query, this.#memberValues, this.#className)
-
-            if (responseContainer.isSuccess) {
-                u
+            
+            var query = `
+            UPDATE ${this.#className}s
+            SET 
+            ` 
+            for (const memberName in this) {
+                query += `${memberName} = ?,`
             }
+
+            query = query.slice(0, -1)
+            query += `
+            WHERE id = ?`
+
+            console.log(query)
+
+            const values = this.#memberValues
+            values.push(this.#id)
+
+            console.log(values)
+
+            return await QueryManager.runQuery(query, values, this.#className)
+
         }
 
         async delete() {
@@ -168,7 +178,7 @@ module.exports = function ({ QueryManager }) {
          * @param {string} table 
          * @returns {Promise<ResponseContainer>}
          */
-        async getAllFrom(table) {
+        async getAll(table) {
 
             this.updateQueryValues()
 
@@ -177,7 +187,7 @@ module.exports = function ({ QueryManager }) {
             FROM ${table}
             WHERE ${this.#className.toLowerCase()}_id = ?
             `
-            return await QueryManager.runQuery(query, [this.id], table.slice(0, -1))
+            return await QueryManager.runQuery(query, [this.#id], table.slice(0, -1))
         }
 
         /**
@@ -185,11 +195,16 @@ module.exports = function ({ QueryManager }) {
          * by printing them into the terminal.
          */
         visualValidation() {
+            console.log("\n")
+            console.log("visualValidation ->")
+            console.log(`${this.#className} class -> id: ` + this.#id)
             for (const memberName in this) {
                 console.log(`${this.#className} class -> ${memberName}: ` + this[memberName])
             }
-
+            console.log("\n")
         }
+
+
 
     }
 
