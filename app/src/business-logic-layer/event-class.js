@@ -42,7 +42,9 @@ module.exports = function ({ DbBuddy, QueryManager, statusCodes }) {
          * @param {Integer} user_id 
          * @returns {Promise<ResponseContainer>}
          */
-        async getEventsByUserId(user_id) {
+        async getEventsByUserId(user_id, limit) {
+
+            const params = [user_id, parseInt(limit)];
 
             const query = `
                 SELECT c.id as coordinate_id, event_type, filename, object_desc
@@ -57,9 +59,9 @@ module.exports = function ({ DbBuddy, QueryManager, statusCodes }) {
                 ON m.user_id=u.id
                 WHERE u.id = ?
                 ORDER BY e.id DESC
-                LIMIT 10;
+                LIMIT ?;
             `
-            const responseContainer = await QueryManager.runQuery(query, [user_id], 'Events')
+            const responseContainer = await QueryManager.runQuery(query, params, 'Events')
 
             return responseContainer
         }

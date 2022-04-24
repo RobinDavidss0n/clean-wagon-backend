@@ -23,6 +23,21 @@ module.exports = function ({ statusCodes, Event, s3Bucket, googleVision }) {
         }
     })
 
+    router.get('/by-userid/:user_id', async (req, res) => {
+        const user_id = req.params.user_id
+        const limit = req.query.limit === undefined ? 10 : req.query.limit
+        const event = new Event()
+        const events = await event.getEventsByUserId(user_id, limit)
+        if(events.isSuccess) {
+            res.status(statusCodes.OK).json(events.result)
+        } else if (events.errorCode === 'EventsNotFound') {
+            res.status(statusCodes.NotFound).json({errorCode: events.errorCode, result: events.result})
+        } else {
+            console.log(events);
+            res.status(statusCodes.InternalServerError).json(events.errorCode)
+        }
+    })
+
     router.post('/', upload.single('image'), async (req, res) => {
 
         const request = {
