@@ -57,4 +57,11 @@ Time: 2 hrs
 Continued the planning of the class-based architecture with regard to resource handling. Also panned out the REST API architecture and data flow between the backend and the mower and smartphone app in liaison with the mower and app squads respectively.
 
 Time: 5 hrs
+
+
+21 April 2022
+Attended team meeting. Had separate meeting with the app squad to explain and discuss how the app should fetch data through the API.
+Co-coded with Robin and rewrote the Mower class into an inheriting class of DbBuddy. Finalized test code for the Journey class.
+
+Time: 5 hrs
  
