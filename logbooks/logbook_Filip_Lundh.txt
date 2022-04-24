@@ -69,4 +69,30 @@ Thursday April 14 -
 
 4h
 
+Tuesday April 19 - 
+ - Sprint planning meeting
+
+1h
+
+Wednesday April 20 -
+ - Fixed express server crash on event get request when event not found
+ - Prevent express server from crashing if no image in event post request
+ - Discussed the flow of the backend system and how it is supposed to work with the mower
+ - Started working on REST API documentation with Swagger/OpenAPI
+
+5h
+
+Thursday April 21 - 
+ - Explained flow for mower and app teams
+ - Continued on REST API documentation
+ - Created a mock REST API for the mower team to test all commands
+
+5h
+
+Sunday April 24 -
+ - Rewrote the code for the event router to use the new class structure
+ - Implemented GET /events for all events of a certain mower
+ - Implemented GET /events for all events of a specific user
+ 
+3h
 
