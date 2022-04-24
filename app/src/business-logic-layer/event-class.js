@@ -44,10 +44,10 @@ module.exports = function ({ DbBuddy, QueryManager, statusCodes }) {
          */
         async getEventsByUserId(user_id, limit) {
 
-            const params = [user_id, parseInt(limit)];
+            const params = [user_id, limit];
 
             const query = `
-                SELECT c.id as coordinate_id, event_type, filename, object_desc
+                SELECT c.id as coordinate_id, j.id as journey_id, event_type, filename, object_desc
                 FROM Events AS e
                 INNER JOIN Coordinates as c
                 ON e.coordinate_id=c.id 
@@ -58,6 +58,27 @@ module.exports = function ({ DbBuddy, QueryManager, statusCodes }) {
                 INNER JOIN Users as u
                 ON m.user_id=u.id
                 WHERE u.id = ?
+                ORDER BY e.id DESC
+                LIMIT ?;
+            `
+            const responseContainer = await QueryManager.runQuery(query, params, 'Events')
+
+            return responseContainer
+        }
+        async getEventsByMowerId(mowerId, limit) {
+
+            const params = [mowerId, limit];
+
+            const query = `
+                SELECT c.id as coordinate_id, j.id as journey_id, event_type, filename, object_desc
+                FROM Events AS e
+                INNER JOIN Coordinates as c
+                ON e.coordinate_id=c.id 
+                INNER JOIN Journeys as j
+                ON c.journey_id=j.id
+                INNER JOIN Mowers as m
+                ON j.mower_id=m.id
+                WHERE m.id = ?
                 ORDER BY e.id DESC
                 LIMIT ?;
             `
