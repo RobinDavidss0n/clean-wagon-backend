@@ -118,8 +118,6 @@ module.exports = function({ Mower, testLib }) {
         const test1 = await mower.getAll('Journeys') // should succeed
         const test2 = await mower.getAll('Users') // should fail
 
-        console.log(test1)
-
         test1Success = (test1.isSuccess && test1.result[0].mower_id == 1)
         test2Success = (!test2.isSuccess && test2.errorCode == 'internalError' && test2.errorStack.includes('Unknown column'))
 
