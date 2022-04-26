@@ -1,4 +1,4 @@
-module.exports = function({usersManager, User}) {
+module.exports = function({usersManager, User, testLib}) {
 
     const exports = {}
 
@@ -26,7 +26,7 @@ module.exports = function({usersManager, User}) {
      */
     exports.createUser = async function() {
 
-        emailUser = getRandomString(6)
+        emailUser = testLib.getRandomString(6)
 
         // Define valid and invalid user attributes:
         validEmail = emailUser + '@test.com'
@@ -78,7 +78,7 @@ module.exports = function({usersManager, User}) {
 
     }
 
-
+    // TODO: Delete function definition below when verified that 'testLib' import is working properly!
     /**
      * Returns a random string of chars with the specified length
      * @param {number} length 

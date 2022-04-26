@@ -7,12 +7,11 @@ module.exports = function({DbBuddy}) {
     const exports = class extends DbBuddy {
 
         // Database attributes
-        id = null
         mower_serial = null
         user_id = null
         is_online = null
 
-        constructor(user_id = null, mower_serial = null, is_online = null) {
+        constructor(user_id = null, mower_serial = null, is_online = true) {
 
             super("Mower")
             this.user_id = user_id

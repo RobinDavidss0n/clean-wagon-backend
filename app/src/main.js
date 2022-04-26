@@ -4,8 +4,10 @@ const container = awilix.createContainer()
 
 container.register({
     /*** TESTS ********************************************************************************************/
+    testLib:            awilix.asFunction(require('./tests/lib')),
     usersTest:          awilix.asFunction(require('./tests/users-tests')),
     journeyTest:        awilix.asFunction(require('./tests/journey-tests')),
+    mowerTest:          awilix.asFunction(require('./tests/mower-tests')),
 
     /*** DATA ACCESS **************************************************************************************/
     dbConnection:       awilix.asFunction(require('./data-access-layer/db')),
@@ -23,7 +25,7 @@ container.register({
     mowersManager:      awilix.asFunction(require('./business-logic-layer/mowers-manager')),
 
     /*** CLASSES ******************************************************************************************/
-    Mower:              awilix.asFunction(require('./data-access-layer/classes/mower-class')),
+    Mower:              awilix.asFunction(require('./business-logic-layer/resource-classes/mower-class')),
     Event:              awilix.asFunction(require('./data-access-layer/classes/event-class')),
     Coordinate:         awilix.asFunction(require('./data-access-layer/classes/coordinate-class')),
     User:               awilix.asFunction(require('./data-access-layer/classes/user-class')),
