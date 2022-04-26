@@ -38,11 +38,11 @@ module.exports = function ({usersTest, statusCodes, apiRouter, imageRouter, coor
     /************************************ Run tests *************************************/
     if (willRunTests) {
         console.log('Running tests...\n')
-        //usersTest.runAllUsersTests()
-        // journeyTest.runAllJourneyTests()
-        // mowerTest.runAllMowerTests()
-        // eventTest.runAllEventTests()
-        // coordinateTest.runAllCoordinateTests()
+        usersTest.runAllUsersTests()
+        journeyTest.runAllJourneyTests()
+        mowerTest.runAllMowerTests()
+        eventTest.runAllEventTests()
+        coordinateTest.runAllCoordinateTests()
     }
 
 

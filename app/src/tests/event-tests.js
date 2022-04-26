@@ -28,7 +28,7 @@ module.exports = function({ Event }) {
 
 
         if(createSuccess && getSuccess && updateSuccess && getBySuccess) {
-            console.log('Event tests passed!')
+            console.log('\n\nEvent tests passed!\n\n')
         }
     }
 
