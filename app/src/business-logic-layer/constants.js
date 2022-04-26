@@ -3,12 +3,17 @@ module.exports = function() {
     const exports = {}
 
     exports.errorCodes = {
+        INTERNAL_ERROR: 'internalError',
         VALIDATION_ERROR: 'validationError',
+
         EMAIL_TOO_SHORT: 'emailTooShort',
         INVALID_EMAIL: 'invalidEmail',
         PASSWORD_TOO_SHORT: 'passwordTooShort',
         FIRST_NAME_TOO_SHORT: 'firstNameTooShort',
-        LAST_NAME_TOO_SHORT: 'lastNameTooShort'
+        LAST_NAME_TOO_SHORT: 'lastNameTooShort',
+
+        EVENT_NOT_FOUND: 'eventNotFound'
+
     }
 
     exports.limits = {

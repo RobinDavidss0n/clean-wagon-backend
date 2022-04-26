@@ -2,7 +2,7 @@ const router = require('express').Router();
 
 let mock_coordinate_id = 0;
 
-module.exports = function ({ statusCodes, coordinateManager }) {
+module.exports = function ({ statusCodes }) {
 
     router.get('/', (req, res) => {
         res.status(statusCodes.OK).json("Hello from backend");

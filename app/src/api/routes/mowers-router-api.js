@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-module.exports = function ({ statusCodes, mowersManager }) {
+module.exports = function ({ statusCodes }) {
 
     //TODO: Not used?
     router.get('/', (req, res) => {
@@ -10,7 +10,7 @@ module.exports = function ({ statusCodes, mowersManager }) {
 
     router.get('by-user-id/:id', async (req, res) => {
         const id = req.params.id
-        const response = await mowersManager.getMowersByUserId(id)
+        //const response = await mowersManager.getMowersByUserId(id)
 
         res.status(statusCodes.OK).json(response);
     })
@@ -18,7 +18,7 @@ module.exports = function ({ statusCodes, mowersManager }) {
 
     router.get('by-serial/:serial', async (req, res) => {
         const serial = req.params.serial
-        const response = await mowersManager.getMowerBySerial(serial)
+        //const response = await mowersManager.getMowerBySerial(serial)
 
         res.status(statusCodes.OK).json(response);
     })

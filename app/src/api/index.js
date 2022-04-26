@@ -1,9 +1,12 @@
 // Toggle test runs:
-const willRunTests = true
+const willRunTests = false
 const express = require('express')    
 const bodyParser = require('body-parser')
 
-module.exports = function ({usersTest, statusCodes, apiRouter, imageRouter, coordinateRouter, eventRouter, journeyRouter, mowersRouter, journeyTest, mowerTest, eventTest, coordinateTest}) {
+module.exports = function ({ usersTest, statusCodes, apiRouter, 
+    imageRouter, coordinateRouter, eventRouter, journeyRouter, 
+    mowersRouter, journeyTest, mowerTest, eventTest, coordinateTest,
+    testing }) {
     console.log(statusCodes.NotExtended)
 
     const app = express()
@@ -36,6 +39,8 @@ module.exports = function ({usersTest, statusCodes, apiRouter, imageRouter, coor
 
 
     /************************************ Run tests *************************************/
+    testing.testing()
+
     if (willRunTests) {
         console.log('Running tests...\n')
         usersTest.runAllUsersTests()
