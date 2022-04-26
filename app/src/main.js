@@ -27,10 +27,10 @@ container.register({
     mowersManager:      awilix.asFunction(require('./business-logic-layer/mowers-manager')),
 
     /*** CLASSES ******************************************************************************************/
-    Mower:              awilix.asFunction(require('./business-logic-layer/resource-classes/mower-class')),
-    Event:              awilix.asFunction(require('./business-logic-layer/resource-classes/event-class')),
-    Coordinate:         awilix.asFunction(require('./business-logic-layer/resource-classes/coordinate-class')),
-    User:               awilix.asFunction(require('./data-access-layer/classes/user-class')),
+    Mower:              awilix.asClass(require('./business-logic-layer/resource-classes/mower-class')),
+    Event:              awilix.asClass(require('./business-logic-layer/resource-classes/event-class')),
+    Coordinate:         awilix.asClass(require('./business-logic-layer/resource-classes/coordinate-class')),
+    User:               awilix.asClass(require('./data-access-layer/classes/user-class')),
     Journey:            awilix.asClass(require('./business-logic-layer/resource-classes/journey-class')),
     DbBuddy:            awilix.asClass(require('./data-access-layer/classes/dbBuddy-class')),
 
