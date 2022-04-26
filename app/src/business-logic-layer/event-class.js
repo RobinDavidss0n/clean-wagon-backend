@@ -7,15 +7,15 @@ module.exports = function ({ DbBuddy, QueryManager, statusCodes }) {
 
         coordinate_id
         event_type
-        filename
+        image_id
         object_desc
 
-        constructor(coordinate_id = null, event_type = null, filename = null, object_desc = null) {
+        constructor(coordinate_id = null, event_type = null, image_id = null, object_desc = null) {
 
             super("Event")
             this.coordinate_id = coordinate_id
             this.event_type = event_type
-            this.filename = filename
+            this.image_id = image_id
             this.object_desc = object_desc
             super.createQueryInfo()
             super.updateQueryValues()
@@ -30,7 +30,7 @@ module.exports = function ({ DbBuddy, QueryManager, statusCodes }) {
 
             let errors = []
 
-            if (this.filename === undefined || this.filename === '') { errors.push({ errorCode: statusCodes.BadRequest, errorMessage: 'No image in request.' }) }
+            if (this.image_id === undefined || this.image_id === '') { errors.push({ errorCode: statusCodes.BadRequest, errorMessage: 'No image in request.' }) }
             if (this.coordinate_id === undefined || this.coordinate_id === '') { errors.push({ errorCode: statusCodes.BadRequest, errorMessage: 'No coordinate_id in request.' }) }
             if (this.event_type === undefined || this.event_type === '') { errors.push({ errorCode: statusCodes.BadRequest, errorMessage: 'No event_type in request.' }) }
 
@@ -47,7 +47,7 @@ module.exports = function ({ DbBuddy, QueryManager, statusCodes }) {
             const params = [user_id, limit];
 
             const query = `
-                SELECT c.id as coordinate_id, j.id as journey_id, event_type, filename, object_desc
+                SELECT c.id as coordinate_id, j.id as journey_id, event_type, image_id, object_desc
                 FROM Events AS e
                 INNER JOIN Coordinates as c
                 ON e.coordinate_id=c.id 
@@ -70,7 +70,7 @@ module.exports = function ({ DbBuddy, QueryManager, statusCodes }) {
             const params = [mowerId, limit];
 
             const query = `
-                SELECT c.id as coordinate_id, j.id as journey_id, event_type, filename, object_desc
+                SELECT c.id as coordinate_id, j.id as journey_id, event_type, image_id, object_desc
                 FROM Events AS e
                 INNER JOIN Coordinates as c
                 ON e.coordinate_id=c.id 

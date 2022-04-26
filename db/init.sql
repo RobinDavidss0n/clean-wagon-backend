@@ -47,7 +47,7 @@ CREATE TABLE Events(
     id INT NOT NULL AUTO_INCREMENT,
     coordinate_id INT NOT NULL,
     event_type VARCHAR(32),
-    filename VARCHAR(32),
+    image_id VARCHAR(32),
     object_desc VARCHAR(32),
     PRIMARY KEY (id),
     FOREIGN KEY (coordinate_id) REFERENCES Coordinates(id)

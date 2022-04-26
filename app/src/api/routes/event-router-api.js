@@ -14,7 +14,7 @@ module.exports = function ({ statusCodes, Event, s3Bucket, googleVision }) {
 
         const event = new Event()
         const result = await event.get(event_id)
-        if(result.isSuccess) {
+        if (result.isSuccess) {
             res.status(statusCodes.OK).json(result.result[0]);
         } else if (result.errorCode === 'EventNotFound') {
             res.status(statusCodes.NotFound).json(result);
@@ -28,10 +28,10 @@ module.exports = function ({ statusCodes, Event, s3Bucket, googleVision }) {
         const limit = req.query.limit === undefined ? 10 : parseInt(req.query.limit)
         const event = new Event()
         const events = await event.getEventsByUserId(user_id, limit)
-        if(events.isSuccess) {
+        if (events.isSuccess) {
             res.status(statusCodes.OK).json(events.result)
         } else if (events.errorCode === 'EventsNotFound') {
-            res.status(statusCodes.NotFound).json({errorCode: events.errorCode, result: events.result})
+            res.status(statusCodes.NotFound).json({ errorCode: events.errorCode, result: events.result })
         } else {
             console.log(events);
             res.status(statusCodes.InternalServerError).json(events.errorCode)
@@ -43,10 +43,10 @@ module.exports = function ({ statusCodes, Event, s3Bucket, googleVision }) {
         const limit = req.query.limit === undefined ? 10 : parseInt(req.query.limit)
         const event = new Event()
         const events = await event.getEventsByMowerId(mower_id, limit)
-        if(events.isSuccess) {
+        if (events.isSuccess) {
             res.status(statusCodes.OK).json(events.result)
         } else if (events.errorCode === 'EventsNotFound') {
-            res.status(statusCodes.NotFound).json({errorCode: events.errorCode, result: events.result})
+            res.status(statusCodes.NotFound).json({ errorCode: events.errorCode, result: events.result })
         } else {
             console.log(events);
             res.status(statusCodes.InternalServerError).json(events.errorCode)
@@ -67,9 +67,9 @@ module.exports = function ({ statusCodes, Event, s3Bucket, googleVision }) {
         const result = await event.insert();
         const errors = await event.validate()
 
-        if(errors.length === 0 && result.isSuccess) {
+        if (errors.length === 0 && result.isSuccess) {
             res.status(statusCodes.Created).json(event)
-        } else if (errors.length > 0){
+        } else if (errors.length > 0) {
             const response = {
                 errorCode: statusCodes.BadRequest,
                 errors: errors.map(err => err.errorMessage)
@@ -77,7 +77,7 @@ module.exports = function ({ statusCodes, Event, s3Bucket, googleVision }) {
             res.status(statusCodes.BadRequest).json(response)
         } else {
             console.log(result);
-            res.status(statusCodes.InternalServerError).json({errors: result.errorCode})
+            res.status(statusCodes.InternalServerError).json({ errors: result.errorCode })
         }
     })
 
