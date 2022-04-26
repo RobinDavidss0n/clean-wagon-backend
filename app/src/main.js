@@ -29,7 +29,7 @@ container.register({
     Mower:              awilix.asFunction(require('./business-logic-layer/resource-classes/mower-class')),
     Event:              awilix.asFunction(require('./data-access-layer/classes/event-class')),
     Coordinate:         awilix.asFunction(require('./business-logic-layer/resource-classes/coordinate-class')),
-    User:               awilix.asFunction(require('./data-access-layer/classes/user-class')),
+    User:               awilix.asFunction(require('./business-logic-layer/resource-classes/user-class')),
     Journey:            awilix.asClass(require('./business-logic-layer/resource-classes/journey-class')),
     DbBuddy:            awilix.asClass(require('./data-access-layer/classes/dbBuddy-class')),
 
