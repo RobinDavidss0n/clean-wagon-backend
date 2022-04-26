@@ -14,18 +14,26 @@ const s3 = new S3({
     secretAccessKey
 });
 
-module.exports = function ({ }) {
+module.exports = function ({ statusCodes }) {
 
     exports.uploadFile = async function (file) {
-        const fileStream = fs.createReadStream(file.path);
 
-        const uploadParams = {
-            Bucket: bucketName,
-            Body: fileStream,
-            Key: file.filename
-        }
+        return new Promise((resolve, reject) => {
+            if (file === undefined) reject({ errorCode: statusCodes.BadRequest, errorMessage: 'No image in request.' })
+            const fileStream = fs.createReadStream(file.path);
 
-        return s3.upload(uploadParams).promise()
+            const uploadParams = {
+                Bucket: bucketName,
+                Body: fileStream,
+                Key: file.filename
+            }
+
+            s3.upload(uploadParams, (err, data) => {
+                if (err) reject(err)
+                else resolve(data)
+            })
+        })
+
     }
 
     exports.downloadFile = async function (fileId) {

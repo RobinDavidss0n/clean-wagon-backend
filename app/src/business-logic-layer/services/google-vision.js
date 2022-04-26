@@ -13,20 +13,27 @@ const CONFIG = {
     }
 }
 
-module.exports = function ({ }) {
+module.exports = function ({ statusCodes }) {
 
     const client = new vision.ImageAnnotatorClient(CONFIG);
 
     exports.detectObject = async function (file) {
 
-        const request = {
-            image: { content: fs.readFileSync(file.path) },
-        };
+        return new Promise((resolve, reject) => {
+            if (file === undefined) reject({ errorCode: statusCodes.BadRequest, errorMessage: 'No image in request' })
+            const request = {
+                image: { content: fs.readFileSync(file.path) },
+            };
 
-        const [result] = await client.objectLocalization(request);
-        if (result.localizedObjectAnnotations.length < 1) { return "No objects found."}
-        const objects = result.localizedObjectAnnotations.length > 1 ? result.localizedObjectAnnotations.reduce((acc, obj) => { return acc.name.concat(' ', obj.name) }) : result.localizedObjectAnnotations[0].name
-        return objects;
+            client.objectLocalization(request).then((res) => {
+                const [result] = res;
+                if (result.localizedObjectAnnotations.length < 1) { return "No objects found." }
+                const objects = result.localizedObjectAnnotations.length > 1 ? result.localizedObjectAnnotations.reduce((acc, obj) => { return acc.name.concat(' ', obj.name) }) : result.localizedObjectAnnotations[0].name
+                resolve(objects)
+            }).catch((error) => {
+                reject(error)
+            })
+        })
     }
 
     return exports

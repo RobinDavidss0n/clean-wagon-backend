@@ -61,23 +61,29 @@ module.exports = function ({ statusCodes, Event, s3Bucket, googleVision }) {
             image: req.file
         }
 
-        const obj = await googleVision.detectObject(request.image)
-        const upl = await s3Bucket.uploadFile(request.image);
-        const event = new Event(request.coordinate_id, request.event_type, upl.key, obj)
-        const result = await event.insert();
-        const errors = await event.validate()
+        try {
+            const obj = await googleVision.detectObject(request.image)
+            const upl = await s3Bucket.uploadFile(request.image);
+            const event = new Event(request.coordinate_id, request.event_type, upl.key, obj)
+            const errors = await event.validate()
+            if (errors.length === 0) {
+                const result = await event.insert();
+                result.isSuccess ? res.status(statusCodes.Created).json(event) : res.status(statusCodes.InternalServerError).json({ errorCode: result.errorCode })
 
-        if (errors.length === 0 && result.isSuccess) {
-            res.status(statusCodes.Created).json(event)
-        } else if (errors.length > 0) {
-            const response = {
-                errorCode: statusCodes.BadRequest,
-                errors: errors.map(err => err.errorMessage)
+            } else if (errors.length > 0) {
+                const response = {
+                    errorCode: statusCodes.BadRequest,
+                    errors: errors.map(err => err.errorMessage)
+                }
+                res.status(statusCodes.BadRequest).json(response)
+            } else {
+                console.log(result);
+                res.status(statusCodes.InternalServerError).json({ errors: result.errorCode })
             }
-            res.status(statusCodes.BadRequest).json(response)
-        } else {
-            console.log(result);
-            res.status(statusCodes.InternalServerError).json({ errors: result.errorCode })
+
+        } catch (error) {
+            console.log(error);
+            res.status(statusCodes.BadRequest).json(error)
         }
     })
 
