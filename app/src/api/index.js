@@ -3,7 +3,10 @@ const willRunTests = true
 const express = require('express')    
 const bodyParser = require('body-parser')
 
-module.exports = function ({usersTest, statusCodes, apiRouter, imageRouter, coordinateRouter, eventRouter, journeyRouter, mowersRouter, journeyTest}) {
+module.exports = function ({
+    usersTest, statusCodes, apiRouter, imageRouter, coordinateRouter,
+    eventRouter, journeyRouter, mowersRouter, journeyTest, coordinateTest
+    }) {
     console.log(statusCodes.NotExtended)
 
     const app = express()
@@ -39,7 +42,8 @@ module.exports = function ({usersTest, statusCodes, apiRouter, imageRouter, coor
     if (willRunTests) {
         console.log('Running tests...\n')
         //usersTest.runAllUsersTests()
-        journeyTest.runAllJourneyTests()
+        // journeyTest.runAllJourneyTests()
+        coordinateTest.runAllCoordinateTests()
     }
 
 

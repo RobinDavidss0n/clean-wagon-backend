@@ -6,6 +6,7 @@ container.register({
     /*** TESTS ********************************************************************************************/
     usersTest:          awilix.asFunction(require('./tests/users-tests')),
     journeyTest:        awilix.asFunction(require('./tests/journey-tests')),
+    coordinateTest:        awilix.asFunction(require('./tests/coordinate-tests')),
 
     /*** DATA ACCESS **************************************************************************************/
     dbConnection:       awilix.asFunction(require('./data-access-layer/db')),
@@ -25,7 +26,7 @@ container.register({
     /*** CLASSES ******************************************************************************************/
     Mower:              awilix.asFunction(require('./data-access-layer/classes/mower-class')),
     Event:              awilix.asFunction(require('./data-access-layer/classes/event-class')),
-    Coordinate:         awilix.asFunction(require('./data-access-layer/classes/coordinate-class')),
+    Coordinate:         awilix.asFunction(require('./business-logic-layer/resource-classes/coordinate-class')),
     User:               awilix.asFunction(require('./data-access-layer/classes/user-class')),
     Journey:            awilix.asClass(require('./business-logic-layer/resource-classes/journey-class')),
     DbBuddy:            awilix.asClass(require('./data-access-layer/classes/dbBuddy-class')),
