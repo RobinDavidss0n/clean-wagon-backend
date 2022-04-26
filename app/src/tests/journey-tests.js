@@ -32,7 +32,7 @@ module.exports = function({ Journey }) {
         }
 
         if(createSuccess && getSuccess && updateSuccess && getBySuccess && getAllSuccess) {
-            console.log('Journey tests passed!')
+            console.log('\n\nJourney tests passed!\n\n')
         }
     }
 

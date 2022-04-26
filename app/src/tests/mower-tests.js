@@ -32,7 +32,7 @@ module.exports = function({ Mower, testLib }) {
         }
 
         if(createSuccess && getSuccess && updateSuccess && getBySuccess && getAllSuccess) {
-            console.log('Mower tests passed!')
+            console.log('\n\nMower tests passed!\n\n')
         }
     }
 
