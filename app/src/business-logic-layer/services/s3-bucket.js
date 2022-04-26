@@ -34,8 +34,40 @@ module.exports = function ({ }) {
             Key: fileId,
             Bucket: bucketName
         }
+        return new Promise((resolve, reject) => {
+            s3.getObject(downloadParams, (err, data) => {
+                if (err) reject(err)
+                else resolve(data)
+            })
+        })
 
-        return s3.getObject(downloadParams).createReadStream()
+        try {
+            const downloadParams = {
+                Key: fileId,
+                Bucket: bucketName
+            }
+
+
+            // var s3object = (await s3.getObject({ Bucket: bucket, Key: filename }).promise()); 
+            const data = await s3.getObject(downloadParams).promise()
+
+            var csvreadstream = new stream.Readable();
+            csvreadstream._read = () => { };
+            csvreadstream.push(data.Body);
+
+
+
+            console.log('Data');
+            console.log(data);
+
+            return csvreadstream
+
+        } catch (e) {
+            console.log('e');
+            console.log(e.message);
+            console.log(e);
+            return e
+        }
     }
 
     return exports
