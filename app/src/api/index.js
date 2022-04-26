@@ -42,9 +42,9 @@ module.exports = function ({
     if (willRunTests) {
         console.log('Running tests...\n')
         usersTest.runAllUsersTests()
-        // journeyTest.runAllJourneyTests()
-        // mowerTest.runAllMowerTests()
-        // coordinateTest.runAllCoordinateTests()
+        journeyTest.runAllJourneyTests()
+        mowerTest.runAllMowerTests()
+        coordinateTest.runAllCoordinateTests()
     }
 
 

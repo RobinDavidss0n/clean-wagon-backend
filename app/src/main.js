@@ -33,6 +33,7 @@ container.register({
     Journey:            awilix.asClass(require('./business-logic-layer/resource-classes/journey-class')),
     DbBuddy:            awilix.asClass(require('./data-access-layer/classes/dbBuddy-class')),
 
+    ResponseContainer:  awilix.asClass(require('./data-access-layer/classes/response-container-class')),
     s3Bucket:           awilix.asFunction(require('./business-logic-layer/services/s3-bucket')),
     googleVision:       awilix.asFunction(require('./business-logic-layer/services/google-vision')),
 

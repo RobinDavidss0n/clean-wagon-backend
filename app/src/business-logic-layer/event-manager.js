@@ -1,6 +1,4 @@
-const ResponseContainer = require('../data-access-layer/classes/response-container-class')
-
-module.exports = function ({ constants, eventRepo, s3Bucket, googleVision }) {
+module.exports = function ({ constants, eventRepo, s3Bucket, googleVision, ResponseContainer }) {
 
     const exports = {}
     const errorCodes = constants.errorCodes

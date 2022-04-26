@@ -1,6 +1,5 @@
-const ResponseContainer = require('./classes/response-container-class')
 
-module.exports = function({dbConnection}) {
+module.exports = function({dbConnection, ResponseContainer}) {
     const exports = {}
 
     /**
