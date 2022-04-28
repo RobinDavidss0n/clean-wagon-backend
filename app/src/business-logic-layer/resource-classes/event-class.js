@@ -2,20 +2,24 @@
  * @class Event
  */
 
-module.exports = function ({ DbBuddy }) {
+module.exports = function ({ DbBuddy, ResponseContainer, constants }) {
 
     const exports = class extends DbBuddy {
 
         // Database attributes
         coordinate_id = null
         event_type = null
-        filename = null
+        image_id = null
         object_desc = null
 
-        constructor(coordinate_id = null) {
+        constructor(mower_id = null, coordinate_id = null, event_type = null, image_id = null, object_desc = null) {
 
             super("Event")
+            this.mower_id = mower_id
             this.coordinate_id = coordinate_id
+            this.event_type = event_type
+            this.image_id = image_id
+            this.object_desc = object_desc
             super.createQueryInfo()
             super.updateQueryValues()
         }

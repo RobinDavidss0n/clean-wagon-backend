@@ -1,5 +1,5 @@
-module.exports = function() {
-    
+module.exports = function () {
+
     const exports = {}
 
     exports.errorCodes = {
@@ -12,7 +12,7 @@ module.exports = function() {
         FIRST_NAME_TOO_SHORT: 'firstNameTooShort',
         LAST_NAME_TOO_SHORT: 'lastNameTooShort',
 
-        EVENT_NOT_FOUND: 'eventNotFound'
+        EVENT_NOT_FOUND: 'EventNotFound'
 
     }
 

@@ -6,7 +6,7 @@ const fs = require('fs');
 const util = require('util');
 const unlinkFile = util.promisify(fs.unlink);
 
-module.exports = function ({ statusCodes, Event, s3Bucket, googleVision, constants }) {
+module.exports = function ({ statusCodes, Mower, Event, s3Bucket, googleVision, constants }) {
     const err = constants.errorCodes
     const upload = multer({ dest: 'uploads/' })
 
@@ -21,7 +21,7 @@ module.exports = function ({ statusCodes, Event, s3Bucket, googleVision, constan
 
         } else if (response.errorCode === err.EVENT_NOT_FOUND) {
             res.status(statusCodes.NotFound).json(response.errorCode);
-            
+
         } else {
             res.status(statusCodes.InternalServerError).json(response.errorCode);
         }
@@ -51,7 +51,7 @@ module.exports = function ({ statusCodes, Event, s3Bucket, googleVision, constan
     router.post('/', upload.single('image'), async (req, res) => {
 
         const request = {
-            mower_id: req.params.mower_id,
+            mower_id: req.body.mower_id,
             coordinate_id: req.body.coordinate_id,
             event_type: req.body.event_type,
             image: req.file
@@ -59,19 +59,21 @@ module.exports = function ({ statusCodes, Event, s3Bucket, googleVision, constan
 
         try {
             const obj = await googleVision.detectObject(request.image)
-            const upl = await s3Bucket.uploadFile(request.image);
+            const upl = await s3Bucket.uploadFile(request.image)
 
             const event = new Event(request.mower_id, request.coordinate_id, request.event_type, upl.key, obj)
             const response = await event.insert()
 
+            console.log(response);
+
             if (response.isSuccess) {
                 res.status(statusCodes.Created).json(event)
-    
+
             } else if (response.errorCode === err.VALIDATION_ERROR) {
-                res.status(statusCodes.BadRequest).json(response.errorCode)
-    
+                res.status(statusCodes.BadRequest).json(response.errorStack)
+
             } else {
-                res.status(statusCodes.InternalServerError).json(result.errorCode)
+                res.status(statusCodes.InternalServerError).json(response.errorCode)
             }
 
         } catch (error) {

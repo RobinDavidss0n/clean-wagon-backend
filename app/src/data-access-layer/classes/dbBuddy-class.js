@@ -199,7 +199,7 @@ module.exports = function ({ QueryManager }) {
          * @param {int} limit
          * @returns {Promise<ResponseContainer>}
          */
-        async get(table, limit) {
+        async getFrom(table, limit) {
 
             this.updateQueryValues()
 
