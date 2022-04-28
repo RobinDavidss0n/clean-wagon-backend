@@ -64,8 +64,6 @@ module.exports = function ({ statusCodes, Mower, Event, s3Bucket, googleVision, 
             const event = new Event(request.mower_id, request.coordinate_id, request.event_type, upl.key, obj)
             const response = await event.insert()
 
-            console.log(response);
-
             if (response.isSuccess) {
                 res.status(statusCodes.Created).json(event)
 
