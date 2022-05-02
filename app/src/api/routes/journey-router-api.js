@@ -5,14 +5,23 @@ let mock_journey_id = 0;
 module.exports = function ({ statusCodes, Journey, constants, Coordinate }) {
     const err = constants.errorCodes
 
-    router.get('/', (req, res) => {
-        res.status(statusCodes.OK).json("Hello from journeys");
-    })
-    router.get('/:id', (req, res) => {
+    router.get('/:journey_id', async (req, res) => {
 
-        const id = req.params.id;
+        const journey_id = req.params.journey_id
 
-        res.status(statusCodes.OK).json("Hello from backend");
+        const journey = new Journey()
+        const response = await journey.get(journey_id)
+
+        const coordinate = new Coordinate()
+        const coordinates = await coordinate.getBy('journey_id', journey_id)
+
+        if (response.isSuccess) {
+            res.status(statusCodes.OK).json({ journey: response.result[0], coordinates: coordinates.result })
+        } else if (response.errorCode === err.JOURNEY_NOT_FOUND) {
+            res.status(statusCodes.NotFound).json(response.errorCode);
+        } else {
+            res.status(statusCodes.InternalServerError).json(response.errorCode);
+        }
     })
 
     router.post('/start-journey', async (req, res) => {
@@ -21,15 +30,13 @@ module.exports = function ({ statusCodes, Journey, constants, Coordinate }) {
             mower_id: req.body.mower_id
         }
 
-        const journey = new Journey(request.mower_id);
-        const response = await journey.insert();
+        const journey = new Journey(request.mower_id)
+        const response = await journey.insert()
 
         if (response.isSuccess) {
             res.status(statusCodes.OK).json({ journey_id: response.result.insertId })
-        } else if (response.errorCode === constants.internalError) {
-            res.status(statusCodes.internalError).json(response.errorCode)
         } else {
-            res.status(statusCodes.BadRequest).json(response.errorCode)
+            res.status(statusCodes.InternalServerError).json(response.errorCode)
         }
     })
 
@@ -56,7 +63,7 @@ module.exports = function ({ statusCodes, Journey, constants, Coordinate }) {
 
         if (response.isSuccess) {
             res.status(statusCodes.OK).json()
-        } else if (response.errorCode === err.JourneyNotFound) {
+        } else if (response.errorCode === err.JOURNEY_NOT_FOUND) {
             res.status(statusCodes.NotFound).json(response.errorCode)
         } else {
             res.status(statusCodes.InternalServerError).json(response.errorCode)

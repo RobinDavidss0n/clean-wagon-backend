@@ -13,7 +13,7 @@ module.exports = function () {
         LAST_NAME_TOO_SHORT: 'lastNameTooShort',
 
         EVENT_NOT_FOUND: 'EventNotFound',
-        JourneyNotFound: 'JourneyNotFound'
+        JOURNEY_NOT_FOUND: 'JourneyNotFound'
 
     }
 
