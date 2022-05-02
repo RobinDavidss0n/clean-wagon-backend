@@ -1,8 +1,6 @@
 const router = require('express').Router();
 
-let mock_coordinate_id = 0;
-
-module.exports = function ({ statusCodes }) {
+module.exports = function ({ statusCodes, Coordinate }) {
 
     router.get('/', (req, res) => {
         res.status(statusCodes.OK).json("Hello from backend");
@@ -13,21 +11,24 @@ module.exports = function ({ statusCodes }) {
 
         res.status(statusCodes.OK).json("Hello from backend");
     })
-    
+
     router.post('/', async (req, res) => {
 
-        mock_coordinate_id ++
 
-        const coordinate = {
+        const request = {
             x: req.body.x,
             y: req.body.y,
             journey_id: req.body.journey_id
         }
-        // const result = await coordinateManager.createCoordinate(coordinate)
 
-        console.log(coordinate);
+        const coordinate = new Coordinate(request.journey_id, request.x, request.y)
+        const response = await coordinate.insert();
 
-        res.status(statusCodes.OK).json(mock_coordinate_id);
+        if (response.isSuccess) {
+            res.status(statusCodes.OK).json()
+        } else {
+            res.status(statusCodes.InternalServerError).json(response.errorCode)
+        }
     })
 
     return router

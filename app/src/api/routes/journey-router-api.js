@@ -1,7 +1,5 @@
 const router = require('express').Router();
 
-let mock_journey_id = 0;
-
 module.exports = function ({ statusCodes, Journey, Mower, constants, Coordinate }) {
     const err = constants.errorCodes
 
