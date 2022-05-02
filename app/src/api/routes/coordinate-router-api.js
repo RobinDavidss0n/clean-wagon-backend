@@ -2,18 +2,7 @@ const router = require('express').Router();
 
 module.exports = function ({ statusCodes, Coordinate }) {
 
-    router.get('/', (req, res) => {
-        res.status(statusCodes.OK).json("Hello from backend");
-    })
-    router.get('/:id', (req, res) => {
-
-        const id = req.params.id;
-
-        res.status(statusCodes.OK).json("Hello from backend");
-    })
-
     router.post('/', async (req, res) => {
-
 
         const request = {
             x: req.body.x,
