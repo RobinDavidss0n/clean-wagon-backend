@@ -38,6 +38,7 @@ CREATE TABLE Coordinates(
     journey_id INT NOT NULL,
     x INT NOT NULL,
     y INT NOT NULL,
+    is_event BOOLEAN NOT NULL,
     time TIMESTAMP NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (journey_id) REFERENCES Journeys(id)
@@ -51,7 +52,6 @@ CREATE TABLE Events(
     image_id VARCHAR(32),
     object_desc VARCHAR(32),
     time TIMESTAMP NOT NULL,
-    is_event BOOLEAN NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (mower_id) REFERENCES Mowers(id),
     FOREIGN KEY (coordinate_id) REFERENCES Coordinates(id)
