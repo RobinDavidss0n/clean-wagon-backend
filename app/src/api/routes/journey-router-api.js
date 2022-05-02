@@ -2,8 +2,25 @@ const router = require('express').Router();
 
 let mock_journey_id = 0;
 
-module.exports = function ({ statusCodes, Journey, constants, Coordinate }) {
+module.exports = function ({ statusCodes, Journey, Mower, constants, Coordinate }) {
     const err = constants.errorCodes
+
+    router.get('/by-mowerid/:mower_id', async (req, res) => {
+
+        const mower_id = req.params.mower_id
+
+        const mower = new Mower()
+        mower.setId(mower_id)
+        const response = await mower.getAll('Journeys')
+
+        if (response.isSuccess) {
+            res.status(statusCodes.OK).json(response.result)
+        } else if (response.errorCode === err.JOURNEY_NOT_FOUND) {
+            res.status(statusCodes.NotFound).json(response.errorCode);
+        } else {
+            res.status(statusCodes.InternalServerError).json(response.errorCode);
+        }
+    })
 
     router.get('/:journey_id', async (req, res) => {
 
