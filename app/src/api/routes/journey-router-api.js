@@ -28,9 +28,7 @@ module.exports = function ({ statusCodes, Journey, Mower, constants, Coordinate 
 
         const journey = new Journey()
         const response = await journey.get(journey_id)
-
-        const coordinate = new Coordinate()
-        const coordinates = await coordinate.getBy('journey_id', journey_id)
+        const coordinates = await journey.getAll('Coordinates')
 
         if (response.isSuccess) {
             res.status(statusCodes.OK).json({ journey: response.result[0], coordinates: coordinates.result })
