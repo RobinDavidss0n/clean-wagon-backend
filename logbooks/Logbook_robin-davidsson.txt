@@ -46,3 +46,22 @@ Time: 5h 30 min
 21 April:
 Finished the DbBuddy class and the Journey. Merged them into the pre-production branch. Had a small team meeting and explained flow charts for communication for the app gang. Co coded with Fredrik to rewrite all resources to use the new class system and finished making proper tests for the Journey class.
 Time: 6h 15 min
+
+
+26 April:
+Finished all resource classes and made tests for them. Also integrated the new class system with already existing code and made a major cleanup of the files that was no longer necessary. Meeting with the backend squad to summarize the new structure of the server.
+Time:7h
+
+
+28 April:
+Had a meeting with the entire team about the whole chain. Also had an internal meeting with the backend squad about some implementation and things to implement next sprint.
+Time: 2h
+
+
+
+
+
+
+2 May:
+Had a sprint planning meeting then an internal meeting with the backend squad to decide how to split up the work. Rest of the day I made UML diagrams and wrote the documentation.
+Time: 7h
