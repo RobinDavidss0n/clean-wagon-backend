@@ -18,6 +18,10 @@ module.exports = function ({ QueryManager }) {
             return this.#id
         }
 
+        setId(id) {
+            this.#id = id
+        }
+
         /**
          * Creates the query info that is used when
          * interacting with the database.
@@ -57,7 +61,7 @@ module.exports = function ({ QueryManager }) {
          */
         #updateClassMembers(result) {
             for (const key in result) {
-                if(key != "id"){
+                if (key != "id") {
                     this[key] = result[key]
                 }
             }
@@ -84,7 +88,7 @@ module.exports = function ({ QueryManager }) {
                 responseContainer
                 this.#id = responseContainer.result.insertId
             }
-            
+
             return responseContainer
 
         }
@@ -140,14 +144,14 @@ module.exports = function ({ QueryManager }) {
          * @returns {Promise<ResponseContainer>}
          */
         async update() {
-            
+
 
             this.updateQueryValues()
-            
+
             var query = `
             UPDATE ${this.#className}s
             SET 
-            ` 
+            `
             for (const memberName in this) {
                 query += `${memberName} = ?,`
             }
@@ -184,6 +188,31 @@ module.exports = function ({ QueryManager }) {
             WHERE ${this.#className.toLowerCase()}_id = ?
             `
             return await QueryManager.runQuery(query, [this.#id], table.slice(0, -1))
+        }
+
+        /**
+         * Get a given ammount of the latest entries 
+         * from a given table where the foreign key 
+         * to the current resource
+         * is equal to the class instance's id.
+         * @param {string} table
+         * @param {int} limit
+         * @returns {Promise<ResponseContainer>}
+         */
+        async getFrom(table, limit) {
+
+            this.updateQueryValues()
+
+            const query = `
+                    SELECT *
+                    FROM ${table}
+                    WHERE ${this.#className.toLowerCase()}_id = ?
+                    ORDER BY id DESC
+                    LIMIT ?
+                    `
+
+            const values = [this.#id, limit]
+            return await QueryManager.runQuery(query, values, table.slice(0, -1))
         }
 
         /**

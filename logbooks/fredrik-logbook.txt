@@ -64,4 +64,24 @@ Attended team meeting. Had separate meeting with the app squad to explain and di
 Co-coded with Robin and rewrote the Mower class into an inheriting class of DbBuddy. Finalized test code for the Journey class.
 
 Time: 5 hrs
+
+
+26 April 2022
+Attended weekly meeting and decided what to work on during the coming week.
+Finalized writing the resource classes and also finalized writing the automated tests for these. 
+
+Time: 8 hrs
+
+
+28 April 2022
+Meeting with the entire team as well as with the backend squad. Discussed what was left to be done with the current week's tasks.
+
+Time: 2 hrs.
+
+
+2 May 2022
+Attended the weekly group meeting and decided what to focus our efforts on during the coming week.
+Documented the test results and started writing on the backend section of the report.
+
+Time: 7 hrs
  
