@@ -93,6 +93,26 @@ Sunday April 24 -
  - Rewrote the code for the event router to use the new class structure
  - Implemented GET /events for all events of a certain mower
  - Implemented GET /events for all events of a specific user
- 
+
 3h
+
+Tuesday April 26 -
+- Fixed error handling for /images GET requests
+- Changed the column name filename to image_id in the database
+- Fixed some small bugs
+
+5h
+
+Wednesday April 27
+- Continued the documentation
+
+2h
+
+Wednesday April 28 - 
+- Implemented the Event endpoints which now uses the new event class
+- Made some bug fixes
+- Meeting with all the teams regarding how far we have come and what to do next
+- Finished the documentation in swagger for events and images requests
+
+6h
 

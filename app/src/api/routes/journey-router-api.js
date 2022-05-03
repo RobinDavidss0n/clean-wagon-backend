@@ -70,9 +70,7 @@ module.exports = function ({ statusCodes, Journey, Mower, constants, Coordinate 
 
         const responses = [journey_exists, journey_updated, coordinate_response];
 
-        const response = responses.slice().reduce((acc, obj, index, arr) => {
-            return obj.isSuccess === false ? (arr.splice(0), obj) : obj
-        })
+        const response = responses.slice().reduce((acc, obj, index, arr) => { return obj.isSuccess === false ? (arr.splice(0), obj) : obj })
 
         if (response.isSuccess) {
             res.status(statusCodes.OK).json()
