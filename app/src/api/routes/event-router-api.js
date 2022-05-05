@@ -37,12 +37,21 @@ module.exports = function ({ statusCodes, Mower, Event, Coordinate, s3Bucket, go
 
         const response = await mower.getFrom('Events', limit)
 
-        response.result.forEach(async event => {
+
+        for (let index = 0; index < response.result.length; index++) {
+            const element = response.result[index];
             let coordinate = new Coordinate()
-            await coordinate.get(event.coordinate_id)
-            let time = coordinate.time
-            event["time"] = time
-        });
+            const result = await coordinate.get(element.coordinate_id)
+            if (result.isSuccess) {
+                let time = coordinate.time
+                console.log(coordinate, time);
+                element["time"] = time
+            } else {
+                console.log(result);
+                response.isSuccess = false
+                break;
+            }
+        }
 
         if (response.isSuccess) {
             res.status(statusCodes.OK).json(response.result)
@@ -77,7 +86,7 @@ module.exports = function ({ statusCodes, Mower, Event, Coordinate, s3Bucket, go
             await coordinate.update()
 
             if (response.isSuccess) {
-                res.status(statusCodes.Created).json(event)
+                res.status(statusCodes.Created).json()
 
             } else if (response.errorCode === err.VALIDATION_ERROR) {
                 res.status(statusCodes.BadRequest).json(response.errorStack)
