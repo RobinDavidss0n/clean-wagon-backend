@@ -84,4 +84,9 @@ Attended the weekly group meeting and decided what to focus our efforts on durin
 Documented the test results and started writing on the backend section of the report.
 
 Time: 7 hrs
+
+5 May
+Prepared for and attended the "Lessons learned" meeting. Created API flow diagrams for the report and defined the remaining manual tests required for the backend. Helped the app team to debug the app's bluetooth functionality.
+
+Time: 5 hrs
  
