@@ -44,7 +44,6 @@ module.exports = function ({ statusCodes, Mower, Event, Coordinate, s3Bucket, go
             const result = await coordinate.get(element.coordinate_id)
             if (result.isSuccess) {
                 let time = coordinate.time
-                console.log(coordinate, time);
                 element["time"] = time
             } else {
                 console.log(result);
