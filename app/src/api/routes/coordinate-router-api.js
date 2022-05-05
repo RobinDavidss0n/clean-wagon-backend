@@ -14,7 +14,7 @@ module.exports = function ({ statusCodes, Coordinate }) {
         const response = await coordinate.insert();
 
         if (response.isSuccess) {
-            res.status(statusCodes.OK).json()
+            res.status(statusCodes.OK).json({ coordinate_id: response.result.insertId })
         } else {
             res.status(statusCodes.InternalServerError).json(response.errorCode)
         }
