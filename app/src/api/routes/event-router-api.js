@@ -37,12 +37,12 @@ module.exports = function ({ statusCodes, Mower, Event, Coordinate, s3Bucket, go
 
         const response = await mower.getFrom('Events', limit)
 
-        response.result.array.forEach(event => {
-            let coordinate = new Coordinate().get(event.coordinate_id)
+        response.result.forEach(async event => {
+            let coordinate = new Coordinate()
+            await coordinate.get(event.coordinate_id)
             let time = coordinate.time
             event["time"] = time
         });
-
 
         if (response.isSuccess) {
             res.status(statusCodes.OK).json(response.result)
