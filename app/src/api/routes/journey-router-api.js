@@ -47,7 +47,7 @@ module.exports = function ({ statusCodes, Journey, Mower, constants, Coordinate 
         const response = await journey.insert()
 
         if (response.isSuccess) {
-            res.status(statusCodes.OK).json({ journey_id: response.result.insertId })
+            res.status(statusCodes.Created).json({ journey_id: response.result.insertId })
         } else {
             res.status(statusCodes.InternalServerError).json(response.errorCode)
         }
