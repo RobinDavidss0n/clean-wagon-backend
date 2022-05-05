@@ -17,6 +17,18 @@ module.exports = function ({ statusCodes, Mower, Event, Coordinate, s3Bucket, go
         const response = await event.get(event_id)
 
         if (response.isSuccess) {
+            let coordinate = new Coordinate()
+            const result = await coordinate.get(response.result[0].coordinate_id)
+            if (result.isSuccess) {
+                let time = coordinate.time
+                response.result[0]["time"] = time
+            } else {
+                console.log(result);
+                response.isSuccess = false
+            }
+        }
+
+        if (response.isSuccess) {
             res.status(statusCodes.OK).json(response.result[0]);
 
         } else if (response.errorCode === err.EVENT_NOT_FOUND) {
@@ -36,7 +48,6 @@ module.exports = function ({ statusCodes, Mower, Event, Coordinate, s3Bucket, go
         mower.setId(mower_id)
 
         const response = await mower.getFrom('Events', limit)
-
 
         for (let index = 0; index < response.result.length; index++) {
             const element = response.result[index];
