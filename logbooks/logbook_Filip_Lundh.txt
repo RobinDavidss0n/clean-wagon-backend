@@ -142,4 +142,7 @@ Thursday May 5 -
 - Fixed some async issues in GET /events
 - Added a response to POST /coordinates which now returns the inserted ID
 
-8h
+7h
+
+Wednesday May 11 -
+- Testing the whole flow of the system with app and mower team

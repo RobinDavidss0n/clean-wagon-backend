@@ -1,10 +1,10 @@
 // Toggle test runs:
 const willRunTests = false
-const express = require('express')    
+const express = require('express')
 const bodyParser = require('body-parser')
 
-module.exports = function ({ usersTest, statusCodes, apiRouter, 
-    imageRouter, coordinateRouter, eventRouter, journeyRouter, 
+module.exports = function ({ usersTest, statusCodes, apiRouter,
+    imageRouter, coordinateRouter, eventRouter, journeyRouter,
     mowersRouter, journeyTest, mowerTest, eventTest, coordinateTest,
     testing }) {
     console.log(statusCodes.NotExtended)
