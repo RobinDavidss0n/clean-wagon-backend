@@ -146,3 +146,5 @@ Thursday May 5 -
 
 Wednesday May 11 -
 - Testing the whole flow of the system with app and mower team
+
+3,5h
