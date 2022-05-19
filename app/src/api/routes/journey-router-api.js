@@ -42,9 +42,11 @@ module.exports = function ({ statusCodes, Journey, Mower, constants, Coordinate 
         const request = {
             mower_id: req.body.mower_id
         }
+	console.log(request)
 
         const journey = new Journey(request.mower_id)
         const response = await journey.insert()
+	console.log(response)
 
         if (response.isSuccess) {
             res.status(statusCodes.Created).json({ journey_id: response.result.insertId })

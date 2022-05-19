@@ -12,6 +12,7 @@ module.exports = function ({ statusCodes, Coordinate }) {
 
         const coordinate = new Coordinate(request.journey_id, request.x, request.y)
         const response = await coordinate.insert();
+	
 
         if (response.isSuccess) {
             res.status(statusCodes.Created).json({ coordinate_id: response.result.insertId })

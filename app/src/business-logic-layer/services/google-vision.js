@@ -27,10 +27,12 @@ module.exports = function ({ statusCodes }) {
 
             client.objectLocalization(request).then((res) => {
                 const [result] = res;
-                if (result.localizedObjectAnnotations.length < 1) { return "No objects found." }
+                console.log(result)
+		if (result.localizedObjectAnnotations.length < 1) { return resolve("No objects found.") }
                 const objects = result.localizedObjectAnnotations.length > 1 ? result.localizedObjectAnnotations.reduce((acc, obj) => { return acc.name.concat(' ', obj.name) }) : result.localizedObjectAnnotations[0].name
                 resolve(objects)
             }).catch((error) => {
+		console.log(error)
                 reject(error)
             })
         })

@@ -94,7 +94,7 @@ module.exports = function ({ statusCodes, Mower, Event, Coordinate, s3Bucket, go
             await coordinate.get(request.coordinate_id)
             coordinate.is_event = true
             await coordinate.update()
-
+	
             if (response.isSuccess) {
                 res.status(statusCodes.Created).json()
 
