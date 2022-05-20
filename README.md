@@ -1,2 +1,2 @@
 # clean-wagon-backend
-Bös
+Code for the project in the Intelligent mobile systems course. 
